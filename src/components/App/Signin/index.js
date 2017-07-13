@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
 import {SIGNIN, SIGNIN_REQUEST, HANDLE_EMAIL, HANDLE_PASSWORD} from '../../../reducers/auth';
+import {CLOSE} from '../../../reducers/notify';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import store from '../../../store';
@@ -37,6 +38,7 @@ const Signin = props => (
       open={props.snackbarOpen}
       message={props.message}
       autoHideDuration={4000}
+      onRequestClose={snackbarClose}
     />
   </Paper>
 );
@@ -81,12 +83,20 @@ const signin = () => {
     })
   })
   .catch(error => {
-    console.log(error)
+    store.dispatch({
+      type: SIGNIN
+    })
   })
 }
 
+const snackbarClose = () => {
+  store.dispatch({
+    type: CLOSE,
+  });
+}
+
 const mapDispatchToProps = dispatch => bindActionCreators({
-  signin
+  Signin
 }, dispatch);
 
 export default connect(

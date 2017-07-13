@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {SIGNUP_REQUEST, SIGNIN, HANDLE_EMAIL, HANDLE_PASSWORD, HANDLE_USERNAME} from '../../../reducers/auth';
+import {CLOSE} from '../../../reducers/notify';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Snackbar from 'material-ui/Snackbar';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import NetService from '../../../net-service';
 import store from '../../../store';
 import {push} from 'react-router-redux';
@@ -21,6 +25,20 @@ const signin = auth => {
   })
   .catch(error => console.log(error))
 }
+
+const mapStateToProps = state => ({
+  pending: state.auth.pending,
+  token: state.auth.token,
+  email: state.auth.email,
+  password: state.auth.password,
+  username: state.auth.username,
+  snackbarOpen: state.notify.open,
+  message: state.notify.message
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  Signup
+}, dispatch);
 
 class Signup extends Component {
 
@@ -74,6 +92,13 @@ class Signup extends Component {
             disabled={this.props.pending}
           />
         </div>
+        <Snackbar
+          className="error-message"
+          open={this.props.snackbarOpen}
+          message={this.props.message}
+          autoHideDuration={4000}
+          onRequestClose={this.snackbarClose}
+        />
       </Paper>
     )
   }
@@ -89,8 +114,21 @@ class Signup extends Component {
       username: auth.username
     })
     .then(response => signin(auth))
-    .catch(error => console.log(error))
+    .catch(error => {
+      store.dispatch({
+        type: SIGNIN
+      });
+    })
+  }
+
+  snackbarClose() {
+    store.dispatch({
+      type: CLOSE,
+    });
   }
 }
 
-export default Signup;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signup);

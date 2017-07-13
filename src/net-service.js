@@ -31,21 +31,14 @@ class NetService {
 
   handleSuccess = response => response;
 
-  handleError = (error) => {
-    switch (error.response.status) {
-      case 401:
-        store.dispatch({
-          type: OPEN,
-          message: error.response.data.error.message
-        });
-        break;
-      case 404:
-        document.location = '/404';
-        break;
-      default:
-        document.location = '/500';
-        break;
-    }
+  handleError = error => {
+    store.dispatch({
+      type: OPEN,
+      message: error.response.data.error.message
+    });
+    setTimeout(() => {
+      store.getState().notify.message
+    }, 4000);
     return Promise.reject(error)
   }
 
