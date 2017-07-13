@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {SIGNUP_REQUEST, SIGNIN, HANDLE_EMAIL, HANDLE_PASSWORD, HANDLE_USERNAME} from '../../../reducers/auth';
-import {CLOSE} from '../../../reducers/notify';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {SIGNUP_REQUEST, SIGNIN, HANDLE_EMAIL, HANDLE_PASSWORD, HANDLE_USERNAME} from '../../../reducers/auth';
+import {CLOSE} from '../../../reducers/notify';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import NetService from '../../../net-service';
@@ -42,24 +42,31 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 
 class Signup extends Component {
 
-  static handleEmail(event) {
+  email = '';
+  password = '';
+  username = '';
+
+  handleEmail(event) {
+    this.email = event.target.value;
     store.dispatch({
       type: HANDLE_EMAIL,
-      email: event.target.value
+      email: this.email
     });
   }
 
-  static handlePassword(event) {
+  handlePassword(event) {
+    this.password = event.target.value;
     store.dispatch({
       type: HANDLE_PASSWORD,
-      password: event.target.value
+      password: this.password
     });
   }
 
-  static handleUsername(event) {
+  handleUsername(event) {
+    this.username = event.target.value;
     store.dispatch({
       type: HANDLE_USERNAME,
-      username: event.target.value
+      username: this.username
     })
   }
 
@@ -67,31 +74,44 @@ class Signup extends Component {
     return (
       <Paper zDepth={3} className="paper">
         <p>signup page</p>
-        <div>
-          <TextField type="email"
+        <ValidatorForm
+          onSubmit={this.signup}
+        >
+          <TextValidator
+            type="email"
             hintText="Email"
-            onChange={this.handleEmail}
+            onChange={this.handleEmail.bind(this)}
+            name="email"
+            value={this.email}
+            validators={['required', 'isEmail']}
+            errorMessages={['email is required', 'email is not valid']}
           />
-        </div>
-        <div>
-          <TextField type="text"
+          <TextValidator
+            type="text"
             hintText="Username"
-            onChange={this.handleUsername}
+            onChange={this.handleUsername.bind(this)}
+            name="username"
+            value={this.username}
+            validators={['required']}
+            errorMessages={['password is required']}
           />
-        </div>
-        <div>
-          <TextField type="password"
+          <TextValidator
+            type="password"
             hintText="Password"
-            onChange={this.handlePassword}
+            onChange={this.handlePassword.bind(this)}
+            name="password"
+            value={this.password}
+            validators={['required']}
+            errorMessages={['password is required']}
           />
-        </div>
-        <div className="paper-button">
-          <RaisedButton
-            label="Register"
-            onClick={this.signup}
-            disabled={this.props.pending}
-          />
-        </div>
+          <div className="paper-button">
+            <RaisedButton
+              type="submit"
+              label="Register"
+              disabled={this.props.pending}
+            />
+          </div>
+        </ValidatorForm>
         <Snackbar
           className="error-message"
           open={this.props.snackbarOpen}

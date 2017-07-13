@@ -24,8 +24,7 @@ class App extends Component {
         </header>
         <AppBar
           title="Title"
-          iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-          iconElementRight={<IconButton/>}
+          iconElementLeft={<IconButton tooltip="blablabla"><NavigationClose /></IconButton>}
           zDepth={2}
         />
         <main>

@@ -36,9 +36,6 @@ class NetService {
       type: OPEN,
       message: error.response.data.error.message
     });
-    setTimeout(() => {
-      store.getState().notify.message
-    }, 4000);
     return Promise.reject(error)
   }
 

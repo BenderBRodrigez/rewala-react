@@ -1,8 +1,8 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import Snackbar from 'material-ui/Snackbar';
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {SIGNIN, SIGNIN_REQUEST, HANDLE_EMAIL, HANDLE_PASSWORD} from '../../../reducers/auth';
 import {CLOSE} from '../../../reducers/notify';
 import {bindActionCreators} from 'redux';
@@ -11,28 +11,42 @@ import store from '../../../store';
 import {push} from 'react-router-redux';
 import NetService from '../../../net-service';
 
+
+let email = '';
+let password = '';
+
 const Signin = props => (
   <Paper zDepth={3} className="paper">
     <p>signin page</p>
-    <div>
-      <TextField type="email"
+    <ValidatorForm
+      onSubmit={signin}
+    >
+      <TextValidator
+        type="email"
         hintText="Email"
         onChange={handleEmail}
+        name="email"
+        value={email}
+        validators={['required', 'isEmail']}
+        errorMessages={['email is required', 'email is not valid']}
       />
-    </div>
-    <div>
-      <TextField type="password"
+      <TextValidator
+        type="password"
         hintText="Password"
         onChange={handlePassword}
+        name="password"
+        value={password}
+        validators={['required']}
+        errorMessages={['password is required']}
       />
-    </div>
-    <div className="paper-button">
-      <RaisedButton
-        label="Login"
-        onClick={signin}
-        disabled={props.pending}
-      />
-    </div>
+      <div className="paper-button">
+        <RaisedButton
+          type="submit"
+          label="Login"
+          disabled={props.pending}
+        />
+      </div>
+    </ValidatorForm>
     <Snackbar
       className="error-message"
       open={props.snackbarOpen}
@@ -43,26 +57,19 @@ const Signin = props => (
   </Paper>
 );
 
-const mapStateToProps = state => ({
-  pending: state.auth.pending,
-  token: state.auth.token,
-  email: state.auth.email,
-  password: state.auth.password,
-  snackbarOpen: state.notify.open,
-  message: state.notify.message
-});
-
 const handleEmail = event => {
+  email = event.target.value;
   store.dispatch({
     type: HANDLE_EMAIL,
-    email: event.target.value
+    email: email
   });
 }
 
 const handlePassword = event => {
+  password = event.target.value;
   store.dispatch({
     type: HANDLE_PASSWORD,
-    password: event.target.value
+    password: password
   });
 }
 
@@ -94,6 +101,15 @@ const snackbarClose = () => {
     type: CLOSE,
   });
 }
+
+const mapStateToProps = state => ({
+  pending: state.auth.pending,
+  token: state.auth.token,
+  email: state.auth.email,
+  password: state.auth.password,
+  snackbarOpen: state.notify.open,
+  message: state.notify.message
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   Signin
