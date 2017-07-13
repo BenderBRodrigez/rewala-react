@@ -1,0 +1,18 @@
+@import '../app.scss';
+
+.paper {
+  width: 80%;
+  max-width: 500px;
+  min-height: 200px;
+  text-align: center;
+  margin: 1rem auto;
+  padding: .6rem;
+  .paper-button {
+    margin: 1rem 0;
+  }
+}
+.error-message {
+  &>div {
+    background-color: $error-color !important;
+  }
+}
