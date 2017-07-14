@@ -93,7 +93,7 @@ class Signup extends Component {
             name="username"
             value={this.username}
             validators={['required']}
-            errorMessages={['password is required']}
+            errorMessages={['username is required']}
           />
           <TextValidator
             type="password"

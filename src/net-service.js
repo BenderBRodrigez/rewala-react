@@ -26,7 +26,14 @@ class NetService {
   }
 
   handleToken = () => {
-    localStorage.setItem('access_token', store.getState().auth.token);
+    if (localStorage.getItem('access_token')) {
+      store.getState().auth.token = localStorage.getItem('access_token');
+      return;
+    }
+    if (store.getState().auth.token) {
+      localStorage.setItem('access_token', store.getState().auth.token);
+      return;
+    }
   }
 
   handleSuccess = response => response;

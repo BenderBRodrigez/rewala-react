@@ -1,4 +1,5 @@
 export const SIGNIN = 'auth/SIGNIN';
+export const SIGNOUT = 'auth/SIGNOUT';
 export const SIGNIN_REQUEST = 'auth/SIGNIN_REQUEST';
 export const SIGNUP_REQUEST = 'auth/SIGNUP_REQUEST';
 export const HANDLE_EMAIL = 'auth/HANDLE_EMAIL';
@@ -27,6 +28,11 @@ export default (state = initialState, action) => {
         ...state,
         pending: false,
         token: action.token
+      }
+    case SIGNOUT:
+      return {
+        ...state,
+        token: ''
       }
     case HANDLE_EMAIL:
       return {
