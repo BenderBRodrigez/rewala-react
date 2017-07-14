@@ -17,10 +17,10 @@ class Menu extends Component {
   render() {
     return (
       <div>
-        {this.props.token && <Link to="/">Home</Link>}
-        {this.props.token && <a href="/" onClick={this.signout}>Signout</a>}
         {!this.props.token && <Link to="/signin">Signin</Link>}
         {!this.props.token && <Link to="/signup">Signup</Link>}
+        {this.props.token && <Link to="/">Home</Link>}
+        {this.props.token && <a href="/" onClick={this.signout}>Signout</a>}
       </div>
     );
   }
@@ -31,7 +31,6 @@ class Menu extends Component {
       type: SIGNOUT
     });
   }
-
 }
 
 export default connect(

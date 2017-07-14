@@ -17,11 +17,11 @@ const signin = auth => {
     password: auth.password
   })
   .then(response => {
-    store.dispatch(push('/'));
     store.dispatch({
       type: SIGNIN,
       token: response.data.id
     })
+    store.dispatch(push('/'));
   })
   .catch(error => console.log(error))
 }

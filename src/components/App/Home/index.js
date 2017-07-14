@@ -1,20 +1,24 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import NetService from '../../../net-service';
 import './home.css';
 
-const Home = props => (
-  <div>
-    <p>home page</p>
-    <RaisedButton
-      label="test"
-      onClick={test}
-    />
-    <p>{props.token}</p>
-  </div>
-);
+const Home = props => {
+  if (!props.token) return <Redirect to="/signin" />;
+  return (
+    <div>
+      <p>home page</p>
+      <RaisedButton
+        label="test"
+        onClick={test}
+      />
+      <p>{props.token}</p>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   pending: state.auth.pending,
