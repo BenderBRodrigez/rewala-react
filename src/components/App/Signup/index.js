@@ -20,11 +20,11 @@ const signin = auth => {
     store.dispatch({
       type: SIGNIN,
       token: response.data.id
-    })
+    });
     store.dispatch(push('/'));
   })
   .catch(error => console.log(error))
-}
+};
 
 const mapStateToProps = state => ({
   pending: state.auth.pending,

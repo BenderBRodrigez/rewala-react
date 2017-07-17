@@ -28,3 +28,18 @@ header {
 
 .error-message > div {
   background-color: #d32f2f !important; }
+
+.home-menu {
+  display: inline-block;
+  float: left;
+  text-align: left;
+  margin: 1.5rem 1rem; }
+
+.home-list {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 350px; }
+
+.home-list-item {
+  margin: 1rem;
+  padding: 1rem; }
