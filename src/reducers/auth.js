@@ -5,9 +5,11 @@ export const SIGNUP_REQUEST = 'auth/SIGNUP_REQUEST';
 export const HANDLE_EMAIL = 'auth/HANDLE_EMAIL';
 export const HANDLE_PASSWORD = 'auth/HANDLE_PASSWORD';
 export const HANDLE_USERNAME = 'auth/HANDLE_USERNAME';
+export const GET_USER = 'auth/GET_USER';
 
 const initialState = {
   token: '',
+  user: {},
   pending: false
 };
 
@@ -48,6 +50,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         username: action.username
+      }
+    case GET_USER:
+      return {
+        ...state,
+        user: action.user
       }
     default:
       return state;

@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
   token: state.auth.token,
+  user: state.auth.user,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -20,6 +21,7 @@ class Menu extends Component {
         {!this.props.token && <Link to="/signin">Signin</Link>}
         {!this.props.token && <Link to="/signup">Signup</Link>}
         {this.props.token && <Link to="/">Home</Link>}
+        {this.props.token && <span>{this.props.user.username}</span>}
         {this.props.token && <a href="/" onClick={this.signout}>Signout</a>}
       </div>
     );
