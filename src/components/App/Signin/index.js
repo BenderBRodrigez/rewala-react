@@ -1,11 +1,11 @@
 import {Component} from 'react';
 import {SIGNIN, SIGNIN_REQUEST} from '../../../reducers/auth';
 import {CLOSE} from '../../../reducers/notify';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import store from '../../../store';
 import {push} from 'react-router-redux';
 import NetService from '../../../net-service';
+import minLengthValidator from '../../../validators/min-length';
 import template from './signin.jsx';
 
 const mapStateToProps = state => ({
@@ -14,10 +14,6 @@ const mapStateToProps = state => ({
   snackbarOpen: state.notify.open,
   message: state.notify.message
 });
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-  Signin
-}, dispatch);
 
 class Signin extends Component {
   constructor(props) {
@@ -29,6 +25,10 @@ class Signin extends Component {
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.signin = this.signin.bind(this);
+  }
+
+  componentWillMount() {
+    minLengthValidator();
   }
 
   render = template.bind(this);
@@ -76,6 +76,5 @@ class Signin extends Component {
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Signin);

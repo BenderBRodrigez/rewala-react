@@ -1,6 +1,5 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
-import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -15,11 +14,31 @@ export default function () {
     <div>
       <Paper className='home-menu'>
         <Menu>
-          <MenuItem primaryText="Your created questions" leftIcon={<ArrowForward />} onClick={this.getCreated} />
-          <MenuItem primaryText="Voice given questions" leftIcon={<ArrowForward />} onClick={this.getVoiceGiven} />
-          <MenuItem primaryText="Awaiting your answer questions" leftIcon={<ArrowForward />} onClick={this.getAwaiting} />
-          <MenuItem primaryText="Question results" leftIcon={<ArrowForward />} onClick={this.getResults} />
-          <MenuItem primaryText="Past questions" leftIcon={<ArrowForward />} onClick={this.getPast} />
+          <MenuItem
+            primaryText="Your created questions"
+            leftIcon={<ArrowForward />}
+            onClick={this.getCreated}
+          />
+          <MenuItem
+            primaryText="Voice given questions"
+            leftIcon={<ArrowForward />}
+            onClick={this.getVoiceGiven}
+          />
+          <MenuItem
+            primaryText="Awaiting your answer questions"
+            leftIcon={<ArrowForward />}
+            onClick={this.getAwaiting}
+          />
+          <MenuItem
+            primaryText="Question results"
+            leftIcon={<ArrowForward />}
+            onClick={this.getResults}
+          />
+          <MenuItem
+            primaryText="Past questions"
+            leftIcon={<ArrowForward />}
+            onClick={this.getPast}
+          />
         </Menu>
       </Paper>
       <div className='home-list'>

@@ -26,8 +26,8 @@ export default function () {
           onChange={this.handlePassword}
           name="password"
           value={this.state.password}
-          validators={['required']}
-          errorMessages={['password is required']}
+          validators={['required', 'minLength']}
+          errorMessages={['password is required', 'minimum 6 characters']}
         />
         <div className="paper-button">
           <RaisedButton

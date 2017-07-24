@@ -1,5 +1,4 @@
 import {Component} from 'react';
-import {bindActionCreators} from 'redux';
 import store from '../../../store';
 import {connect} from 'react-redux';
 import {CLOSE} from '../../../reducers/notify';
@@ -39,10 +38,6 @@ const mapStateToProps = state => ({
   list: state.questions.list,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  Home
-}, dispatch);
-
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -68,7 +63,7 @@ class Home extends Component {
   }
 
   getPast() {
-    return getRequest('clients/get-past-questions');
+    return getRequest('clients/get-past-questions')
   }
 
   snackbarClose() {
@@ -80,6 +75,5 @@ class Home extends Component {
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Home);

@@ -1,11 +1,11 @@
 import {Component} from 'react';
 import {SIGNUP_REQUEST, SIGNIN} from '../../../reducers/auth';
 import {CLOSE} from '../../../reducers/notify';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import NetService from '../../../net-service';
 import store from '../../../store';
 import {push} from 'react-router-redux';
+import minLengthValidator from '../../../validators/min-length';
 import template from './signup.jsx';
 
 const signin = state => {
@@ -30,10 +30,6 @@ const mapStateToProps = state => ({
   message: state.notify.message
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  Signup
-}, dispatch);
-
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +45,10 @@ class Signup extends Component {
   }
 
   render = template.bind(this);
+
+  componentWillMount() {
+    minLengthValidator();
+  }
 
   handleEmail(event) {
     this.setState({
@@ -91,6 +91,5 @@ class Signup extends Component {
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Signup);
