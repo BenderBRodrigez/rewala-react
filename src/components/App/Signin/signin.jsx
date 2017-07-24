@@ -16,7 +16,7 @@ export default function () {
           hintText="Email"
           onChange={this.handleEmail}
           name="email"
-          value={this.email}
+          value={this.state.email}
           validators={['required', 'isEmail']}
           errorMessages={['email is required', 'email is not valid']}
         />
@@ -25,7 +25,7 @@ export default function () {
           hintText="Password"
           onChange={this.handlePassword}
           name="password"
-          value={this.password}
+          value={this.state.password}
           validators={['required']}
           errorMessages={['password is required']}
         />

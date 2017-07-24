@@ -14,27 +14,27 @@ export default function () {
         <TextValidator
           type="email"
           hintText="Email"
-          onChange={this.handleEmail.bind(this)}
+          onChange={this.handleEmail}
           name="email"
-          value={this.email}
+          value={this.state.email}
           validators={['required', 'isEmail']}
           errorMessages={['email is required', 'email is not valid']}
         />
         <TextValidator
           type="text"
           hintText="Username"
-          onChange={this.handleUsername.bind(this)}
+          onChange={this.handleUsername}
           name="username"
-          value={this.username}
+          value={this.state.username}
           validators={['required']}
           errorMessages={['username is required']}
         />
         <TextValidator
           type="password"
           hintText="Password"
-          onChange={this.handlePassword.bind(this)}
+          onChange={this.handlePassword}
           name="password"
-          value={this.password}
+          value={this.state.password}
           validators={['required']}
           errorMessages={['password is required']}
         />

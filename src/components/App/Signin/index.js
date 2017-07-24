@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {SIGNIN, SIGNIN_REQUEST, HANDLE_EMAIL, HANDLE_PASSWORD} from '../../../reducers/auth';
+import {SIGNIN, SIGNIN_REQUEST} from '../../../reducers/auth';
 import {CLOSE} from '../../../reducers/notify';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -11,8 +11,6 @@ import template from './signin.jsx';
 const mapStateToProps = state => ({
   pending: state.auth.pending,
   token: state.auth.token,
-  email: state.auth.email,
-  password: state.auth.password,
   snackbarOpen: state.notify.open,
   message: state.notify.message
 });
@@ -22,36 +20,38 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 class Signin extends Component {
-
-  email = '';
-  password = '';
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+    this.signin = this.signin.bind(this);
+  }
 
   render = template.bind(this);
 
   handleEmail(event) {
-    this.email = event.target.value;
-    store.dispatch({
-      type: HANDLE_EMAIL,
-      email: this.email
+    this.setState({
+      email: event.target.value
     });
   }
 
   handlePassword(event) {
-    this.password = event.target.value;
-    store.dispatch({
-      type: HANDLE_PASSWORD,
-      password: this.password
+    this.setState({
+      password: event.target.value
     });
   }
 
   signin() {
-    const auth = store.getState().auth;
     store.dispatch({
       type: SIGNIN_REQUEST
     });
     return NetService.post('/clients/login', {
-      email: auth.email,
-      password: auth.password
+      email: this.state.email,
+      password: this.state.password
     })
     .then(response => {
       store.dispatch({

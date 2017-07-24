@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {SIGNUP_REQUEST, SIGNIN, HANDLE_EMAIL, HANDLE_PASSWORD, HANDLE_USERNAME} from '../../../reducers/auth';
+import {SIGNUP_REQUEST, SIGNIN} from '../../../reducers/auth';
 import {CLOSE} from '../../../reducers/notify';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -8,10 +8,10 @@ import store from '../../../store';
 import {push} from 'react-router-redux';
 import template from './signup.jsx';
 
-const signin = auth => {
+const signin = state => {
   return NetService.post('/clients/login', {
-    email: auth.email,
-    password: auth.password
+    email: state.email,
+    password: state.password
   })
   .then(response => {
     store.dispatch({
@@ -26,9 +26,6 @@ const signin = auth => {
 const mapStateToProps = state => ({
   pending: state.auth.pending,
   token: state.auth.token,
-  email: state.auth.email,
-  password: state.auth.password,
-  username: state.auth.username,
   snackbarOpen: state.notify.open,
   message: state.notify.message
 });
@@ -38,48 +35,47 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 class Signup extends Component {
-
-  email = '';
-  password = '';
-  username = '';
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      username: '',
+    };
+    this.handleEmail = this.handleEmail.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
+    this.handleUsername = this.handleUsername.bind(this);
+    this.signup = this.signup.bind(this);
+  }
 
   render = template.bind(this);
 
   handleEmail(event) {
-    this.email = event.target.value;
-    store.dispatch({
-      type: HANDLE_EMAIL,
-      email: this.email
-    });
-  }
+    this.setState({
+      email: event.target.value
+    });  }
 
   handlePassword(event) {
-    this.password = event.target.value;
-    store.dispatch({
-      type: HANDLE_PASSWORD,
-      password: this.password
-    });
-  }
+    this.setState({
+      password: event.target.value
+    });  }
 
   handleUsername(event) {
-    this.username = event.target.value;
-    store.dispatch({
-      type: HANDLE_USERNAME,
-      username: this.username
-    })
+    this.setState({
+      username: event.target.value
+    });
   }
 
   signup() {
-    const auth = store.getState().auth;
     store.dispatch({
       type: SIGNUP_REQUEST
     });
     return NetService.post('/clients', {
-      email: auth.email,
-      password: auth.password,
-      username: auth.username
+      email: this.state.email,
+      password: this.state.password,
+      username: this.state.username
     })
-    .then(response => signin(auth))
+    .then(response => signin(this.state))
     .catch(error => {
       store.dispatch({
         type: SIGNIN
