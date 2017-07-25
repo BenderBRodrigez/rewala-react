@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
     case GET_USER:
       return {
         ...state,
-        user: action.user
+        user: action.payloads
       }
     default:
       return state;

@@ -1,4 +1,5 @@
 export const GET_LIST = 'questions/GET_LIST';
+export const AJAX_GET = 'questions/AJAX_GET';
 
 const initialState = {
   list: [],
@@ -9,7 +10,7 @@ export default (state = initialState, action) => {
     case GET_LIST:
       return {
         ...state,
-        list: action.list
+        list: action.payloads.data
       }
     default:
       return state;

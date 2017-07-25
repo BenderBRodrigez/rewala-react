@@ -2,32 +2,17 @@ import {Component} from 'react';
 import store from '../../../store';
 import {connect} from 'react-redux';
 import {CLOSE} from '../../../reducers/notify';
-import {GET_LIST} from '../../../reducers/questions';
 import {GET_USER} from '../../../reducers/auth';
-import NetService from '../../../net-service';
+import {GET_LIST} from "../../../reducers/questions";
+import {ajaxGet} from '../../../epics/net';
 import template from './home.jsx';
 import './home.css';
 
-const getRequest = url => {
-  return NetService.get(url)
-  .then(response => {
-    store.dispatch({
-      type: GET_LIST,
-      list: response.data.data
-    })
-  })
-  .catch(error => console.log(error))
-};
-
 const getUser = token => {
-  return NetService.get(`tokens/${token}/user`)
-  .then(response => {
-    store.dispatch({
-      type: GET_USER,
-      user: response.data
-    })
-  })
-  .catch(error => console.log(error))
+  store.dispatch(ajaxGet({
+    url: `tokens/${token}/user`,
+    dispatch_type: GET_USER
+  }))
 };
 
 const mapStateToProps = state => ({
@@ -47,23 +32,38 @@ class Home extends Component {
   render = template.bind(this);
 
   getCreated() {
-    return getRequest('clients/get-questions')
+    store.dispatch(ajaxGet({
+      url: 'clients/get-questions',
+      dispatch_type: GET_LIST
+    }));
   }
 
   getVoiceGiven() {
-    return getRequest('clients/get-voice-given-questions')
+    store.dispatch(ajaxGet({
+      url: 'clients/get-voice-given-questions',
+      dispatch_type: GET_LIST
+    }));
   }
 
   getAwaiting() {
-    return getRequest('clients/get-awaiting-questions')
+    store.dispatch(ajaxGet({
+      url: 'clients/get-awaiting-questions',
+      dispatch_type: GET_LIST
+    }));
   }
 
   getResults() {
-    return getRequest('clients/get-completed-questions')
+    store.dispatch(ajaxGet({
+      url: 'clients/get-completed-questions',
+      dispatch_type: GET_LIST
+    }));
   }
 
   getPast() {
-    return getRequest('clients/get-past-questions')
+    store.dispatch(ajaxGet({
+      url: 'clients/get-past-questions',
+      dispatch_type: GET_LIST
+    }));
   }
 
   snackbarClose() {

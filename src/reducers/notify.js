@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         open: true,
-        message: action.message
+        message: action.error.message
       }
     case CLOSE:
       return {
