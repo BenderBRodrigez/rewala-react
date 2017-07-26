@@ -1,7 +1,10 @@
 import 'rxjs';
 import {combineEpics} from 'redux-observable';
-import {netEpic} from './net';
+import {getEpic, postEpic, signinEpic, redirectEpic} from './net';
 
 export default combineEpics(
-  netEpic,
+  getEpic,
+  postEpic,
+  signinEpic,
+  redirectEpic,
 );

@@ -1,6 +1,6 @@
 export const SIGNIN = 'auth/SIGNIN';
 export const SIGNOUT = 'auth/SIGNOUT';
-export const SIGNIN_REQUEST = 'auth/SIGNIN_REQUEST';
+export const SIGNIN_REQUEST = 'AJAX_SIGNIN'; //'auth/SIGNIN_REQUEST';
 export const SIGNUP_REQUEST = 'auth/SIGNUP_REQUEST';
 export const GET_USER = 'auth/GET_USER';
 
@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
     case GET_USER:
       return {
         ...state,
-        user: action.payloads
+        user: action.payload
       }
     default:
       return state;

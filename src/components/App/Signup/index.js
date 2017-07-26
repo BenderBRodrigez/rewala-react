@@ -1,27 +1,10 @@
 import {Component} from 'react';
-import {SIGNUP_REQUEST, SIGNIN} from '../../../reducers/auth';
 import {CLOSE} from '../../../reducers/notify';
 import {connect} from 'react-redux';
-import NetService from '../../../net-service';
 import store from '../../../store';
-import {push} from 'react-router-redux';
+import {AJAX_SIGNIN, ajaxPost} from '../../../epics/net';
 import minLengthValidator from '../../../validators/min-length';
 import template from './signup.jsx';
-
-const signin = state => {
-  return NetService.post('/clients/login', {
-    email: state.email,
-    password: state.password
-  })
-  .then(response => {
-    store.dispatch({
-      type: SIGNIN,
-      token: response.data.id
-    });
-    store.dispatch(push('/'));
-  })
-  .catch(error => console.log(error))
-};
 
 const mapStateToProps = state => ({
   pending: state.auth.pending,
@@ -67,20 +50,15 @@ class Signup extends Component {
   }
 
   signup() {
-    store.dispatch({
-      type: SIGNUP_REQUEST
-    });
-    return NetService.post('/clients', {
-      email: this.state.email,
-      password: this.state.password,
-      username: this.state.username
-    })
-    .then(response => signin(this.state))
-    .catch(error => {
-      store.dispatch({
-        type: SIGNIN
-      });
-    })
+    store.dispatch(ajaxPost({
+      url: `/clients`,
+      dispatch_type: AJAX_SIGNIN,
+      body: {
+        email: this.state.email,
+        password: this.state.password,
+        username: this.state.username
+      }
+    }));
   }
 
   snackbarClose() {

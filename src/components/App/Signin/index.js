@@ -1,10 +1,8 @@
 import {Component} from 'react';
-import {SIGNIN, SIGNIN_REQUEST} from '../../../reducers/auth';
 import {CLOSE} from '../../../reducers/notify';
 import {connect} from 'react-redux';
 import store from '../../../store';
-import {push} from 'react-router-redux';
-import NetService from '../../../net-service';
+import {AJAX_SIGNIN} from '../../../epics/net';
 import minLengthValidator from '../../../validators/min-length';
 import template from './signin.jsx';
 
@@ -47,24 +45,12 @@ class Signin extends Component {
 
   signin() {
     store.dispatch({
-      type: SIGNIN_REQUEST
+      type: AJAX_SIGNIN,
+      options: {
+        email: this.state.email,
+        password: this.state.password
+      }
     });
-    return NetService.post('/clients/login', {
-      email: this.state.email,
-      password: this.state.password
-    })
-    .then(response => {
-      store.dispatch({
-        type: SIGNIN,
-        token: response.data.id
-      })
-      store.dispatch(push('/'));
-    })
-    .catch(error => {
-      store.dispatch({
-        type: SIGNIN
-      })
-    })
   }
 
   snackbarClose() {

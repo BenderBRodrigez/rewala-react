@@ -10,7 +10,7 @@ import './home.css';
 
 const getUser = token => {
   store.dispatch(ajaxGet({
-    url: `tokens/${token}/user`,
+    url: `/tokens/${token}/user`,
     dispatch_type: GET_USER
   }))
 };
@@ -33,35 +33,35 @@ class Home extends Component {
 
   getCreated() {
     store.dispatch(ajaxGet({
-      url: 'clients/get-questions',
+      url: '/clients/get-questions',
       dispatch_type: GET_LIST
     }));
   }
 
   getVoiceGiven() {
     store.dispatch(ajaxGet({
-      url: 'clients/get-voice-given-questions',
+      url: '/clients/get-voice-given-questions',
       dispatch_type: GET_LIST
     }));
   }
 
   getAwaiting() {
     store.dispatch(ajaxGet({
-      url: 'clients/get-awaiting-questions',
+      url: '/clients/get-awaiting-questions',
       dispatch_type: GET_LIST
     }));
   }
 
   getResults() {
     store.dispatch(ajaxGet({
-      url: 'clients/get-completed-questions',
+      url: '/clients/get-completed-questions',
       dispatch_type: GET_LIST
     }));
   }
 
   getPast() {
     store.dispatch(ajaxGet({
-      url: 'clients/get-past-questions',
+      url: '/clients/get-past-questions',
       dispatch_type: GET_LIST
     }));
   }

@@ -11,6 +11,19 @@ import './index.css';
 
 injectTapEventPlugin();
 
+const handleToken = () => {
+  if (localStorage.getItem('access_token')) {
+    store.getState().auth.token = localStorage.getItem('access_token');
+    return;
+  }
+  if (store.getState().auth.token) {
+    localStorage.setItem('access_token', store.getState().auth.token);
+    return;
+  }
+}
+
+let unsubscribe = store.subscribe(handleToken);
+
 render(
   <MuiThemeProvider>
     <Provider store={store}>
