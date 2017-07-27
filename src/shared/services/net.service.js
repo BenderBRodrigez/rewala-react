@@ -1,25 +1,33 @@
 import {Observable} from 'rxjs';
 import * as notify from '../../redux/notify/actions';
 
-export const setToken = url => {
-  const token = localStorage.getItem('access_token');
-  if (!token) return url;
+class NetService {
+  constructor() {
+    this.baseUrl = 'http://localhost:33001/api';
+  }
 
-  const tokenParam = `access_token=${token}`;
-  url = url.indexOf('?') + 1 ? `${url}&${tokenParam}` : `${url}?${tokenParam}`;
-  return url;
-};
+  setToken(url) {
+    const token = localStorage.getItem('access_token');
+    if (!token) return url;
 
-export const baseUrl = 'http://localhost:33001/api';
+    const tokenParam = `access_token=${token}`;
+    url = url.indexOf('?') + 1 ? `${url}&${tokenParam}` : `${url}?${tokenParam}`;
+    return url;
+  }
 
-export const ajaxGet = options => ({
-  type: 'AJAX_GET',
-  options
-});
+  ajaxGet(options) {
+    return {
+      type: 'AJAX_GET',
+      options
+    }
+  }
+}
+
+export const netService = new NetService();
 
 export const getEpic = action$ => action$.ofType('AJAX_GET').switchMap(action => {
   return Observable.ajax({
-    url: baseUrl + setToken(action.options.url),
+    url: netService.baseUrl + netService.setToken(action.options.url),
     method: 'GET'
   })
   .map(response => ({ //response == null ????

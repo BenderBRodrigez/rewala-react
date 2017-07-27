@@ -3,11 +3,11 @@ import {push} from 'react-router-redux';
 import store from '../../../store';
 import {ActionTypes} from '../actions';
 import * as notify from '../../notify/actions';
-import {baseUrl} from '../../../shared/services/net.service';
+import {netService} from '../../../shared/services/net.service';
 
 export const signinEpic = action$ => action$.ofType(ActionTypes.SIGNIN_REQUEST).switchMap(action => {
   return Observable.ajax({
-    url: `${baseUrl}/clients/login`,
+    url: `${netService.baseUrl}/clients/login`,
     method: 'POST',
     body: action.options,
   })
@@ -35,7 +35,7 @@ export const redirectEpic = action$ => action$.ofType(ActionTypes.SIGNIN).do(act
 
 export const signupEpic = action$ => action$.ofType(ActionTypes.SIGNUP_REQUEST).switchMap(action => {
   return Observable.ajax({
-    url: `${baseUrl}/clients`,
+    url: `${netService.baseUrl}/clients`,
     method: 'POST',
     body: action.options,
   })
