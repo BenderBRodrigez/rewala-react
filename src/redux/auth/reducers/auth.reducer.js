@@ -22,7 +22,7 @@ export function reducer(state = initialState, action) {
     case ActionTypes.SIGNOUT:
       return {
         ...state,
-        token: ''
+        token: null
       }
     case ActionTypes.REQUEST_FAILED:
       return {

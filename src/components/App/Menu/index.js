@@ -21,13 +21,14 @@ class Menu extends Component {
         {!this.props.token && <Link to="/signin">Signin</Link>}
         {!this.props.token && <Link to="/signup">Signup</Link>}
         {this.props.token && <Link to="/">Home</Link>}
-        {this.props.token && <span>{this.props.user.username}</span>}
+        {this.props.token && this.props.user && <span>{this.props.user.username}</span>}
         {this.props.token && <a href="/" onClick={this.signout}>Signout</a>}
       </div>
     );
   }
 
-  signout() {
+  signout(event) {
+    event.preventDefault();
     localStorage.removeItem('access_token');
     store.dispatch({
       type: auth.ActionTypes.SIGNOUT

@@ -30,7 +30,7 @@ export const getEpic = action$ => action$.ofType('AJAX_GET').switchMap(action =>
     url: netService.baseUrl + netService.setToken(action.options.url),
     method: 'GET'
   })
-  .map(response => ({ //response == null ????
+  .map(response => ({
     type: action.options.dispatch_type,
     payload: response.xhr.response
   }))

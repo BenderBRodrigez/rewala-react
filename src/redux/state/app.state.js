@@ -20,7 +20,7 @@ export const rootReducer = combineReducers({
 export const rootEpic = combineEpics(
   getEpic,
   signinEpic,
-  redirectEpic,
   signupEpic,
+  redirectEpic,
   failEpic,
 );
