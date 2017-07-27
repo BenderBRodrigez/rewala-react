@@ -1,9 +1,9 @@
 import {Component} from 'react';
-import {CLOSE} from '../../../reducers/notify';
+import * as notify from '../../../redux/notify/actions';
 import {connect} from 'react-redux';
 import store from '../../../store';
-import {AJAX_SIGNIN} from '../../../epics/net';
-import minLengthValidator from '../../../validators/min-length';
+import * as auth from '../../../redux/auth/actions';
+import minLengthValidator from '../../../shared/validators/min-length';
 import template from './signin.jsx';
 
 const mapStateToProps = state => ({
@@ -45,7 +45,7 @@ class Signin extends Component {
 
   signin() {
     store.dispatch({
-      type: AJAX_SIGNIN,
+      type: auth.ActionTypes.SIGNIN_REQUEST,
       options: {
         email: this.state.email,
         password: this.state.password
@@ -55,7 +55,7 @@ class Signin extends Component {
 
   snackbarClose() {
     store.dispatch({
-      type: CLOSE,
+      type: notify.ActionTypes.CLOSE,
     });
   }
 

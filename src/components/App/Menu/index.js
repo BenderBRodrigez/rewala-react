@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import store from '../../../store';
-import {SIGNOUT} from '../../../reducers/auth';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import store from '../../../store';
+import * as auth from '../../../redux/auth/actions';
 
 const mapStateToProps = state => ({
   token: state.auth.token,
@@ -30,7 +30,7 @@ class Menu extends Component {
   signout() {
     localStorage.removeItem('access_token');
     store.dispatch({
-      type: SIGNOUT
+      type: auth.ActionTypes.SIGNOUT
     });
   }
 }

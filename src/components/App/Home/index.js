@@ -1,17 +1,17 @@
 import {Component} from 'react';
 import store from '../../../store';
 import {connect} from 'react-redux';
-import {CLOSE} from '../../../reducers/notify';
-import {GET_USER} from '../../../reducers/auth';
-import {GET_LIST} from "../../../reducers/questions";
-import {ajaxGet} from '../../../epics/net';
+import * as notify from '../../../redux/notify/actions';
+import * as auth from '../../../redux/auth/actions';
+import * as questions from "../../../redux/questions/actions";
+import {ajaxGet} from '../../../shared/services/net.service';
 import template from './home.jsx';
 import './home.css';
 
 const getUser = token => {
   store.dispatch(ajaxGet({
     url: `/tokens/${token}/user`,
-    dispatch_type: GET_USER
+    dispatch_type: auth.ActionTypes.GET_USER
   }))
 };
 
@@ -34,41 +34,41 @@ class Home extends Component {
   getCreated() {
     store.dispatch(ajaxGet({
       url: '/clients/get-questions',
-      dispatch_type: GET_LIST
+      dispatch_type: questions.ActionTypes.GET_LIST
     }));
   }
 
   getVoiceGiven() {
     store.dispatch(ajaxGet({
       url: '/clients/get-voice-given-questions',
-      dispatch_type: GET_LIST
+      dispatch_type: questions.ActionTypes.GET_LIST
     }));
   }
 
   getAwaiting() {
     store.dispatch(ajaxGet({
       url: '/clients/get-awaiting-questions',
-      dispatch_type: GET_LIST
+      dispatch_type: questions.ActionTypes.GET_LIST
     }));
   }
 
   getResults() {
     store.dispatch(ajaxGet({
       url: '/clients/get-completed-questions',
-      dispatch_type: GET_LIST
+      dispatch_type: questions.ActionTypes.GET_LIST
     }));
   }
 
   getPast() {
     store.dispatch(ajaxGet({
       url: '/clients/get-past-questions',
-      dispatch_type: GET_LIST
+      dispatch_type: questions.ActionTypes.GET_LIST
     }));
   }
 
   snackbarClose() {
     store.dispatch({
-      type: CLOSE,
+      type: notify.ActionTypes.CLOSE,
     });
   }
 

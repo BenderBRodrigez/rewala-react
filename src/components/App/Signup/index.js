@@ -1,9 +1,9 @@
 import {Component} from 'react';
-import {CLOSE} from '../../../reducers/notify';
+import * as auth from '../../../redux/auth/actions';
+import * as notify from '../../../redux/notify/actions';
 import {connect} from 'react-redux';
 import store from '../../../store';
-import {AJAX_SIGNIN, ajaxPost} from '../../../epics/net';
-import minLengthValidator from '../../../validators/min-length';
+import minLengthValidator from '../../../shared/validators/min-length';
 import template from './signup.jsx';
 
 const mapStateToProps = state => ({
@@ -36,12 +36,14 @@ class Signup extends Component {
   handleEmail(event) {
     this.setState({
       email: event.target.value
-    });  }
+    });
+  }
 
   handlePassword(event) {
     this.setState({
       password: event.target.value
-    });  }
+    });
+  }
 
   handleUsername(event) {
     this.setState({
@@ -50,20 +52,19 @@ class Signup extends Component {
   }
 
   signup() {
-    store.dispatch(ajaxPost({
-      url: `/clients`,
-      dispatch_type: AJAX_SIGNIN,
-      body: {
+    store.dispatch({
+      type: auth.ActionTypes.SIGNUP_REQUEST,
+      options: {
         email: this.state.email,
         password: this.state.password,
         username: this.state.username
       }
-    }));
+    });
   }
 
   snackbarClose() {
     store.dispatch({
-      type: CLOSE,
+      type: notify.ActionTypes.CLOSE,
     });
   }
 }

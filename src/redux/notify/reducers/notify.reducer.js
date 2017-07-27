@@ -1,20 +1,15 @@
-export const OPEN = 'notify/OPEN';
-export const CLOSE = 'notify/CLOSE';
+import {ActionTypes} from '../actions';
+import {initialState} from '../states';
 
-const initialState = {
-  message: '',
-  open: false,
-};
-
-export default (state = initialState, action) => {
+export function reducer(state = initialState, action) {
   switch (action.type) {
-    case OPEN:
+    case ActionTypes.OPEN:
       return {
         ...state,
         open: true,
         message: action.error.message
       }
-    case CLOSE:
+    case ActionTypes.CLOSE:
       return {
         ...state,
         open: false,

@@ -2,8 +2,7 @@ import {createStore, applyMiddleware} from 'redux';
 import {routerMiddleware} from 'react-router-redux';
 import {createEpicMiddleware} from 'redux-observable';
 import createHistory from 'history/createBrowserHistory';
-import rootReducer from './reducers';
-import rootEpic from './epics';
+import {rootReducer, rootEpic} from './redux/state/app.state';
 
 export const history = createHistory();
 
