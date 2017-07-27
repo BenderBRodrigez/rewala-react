@@ -12,22 +12,21 @@ export const signinEpic = action$ => action$.ofType(ActionTypes.SIGNIN_REQUEST).
     body: action.options,
   })
   .pluck('response','id')
-  .map(token => {
-    return {
-      type: ActionTypes.SIGNIN,
-      token
-    }
-  })
-  .catch(error => {
-    store.dispatch({
-      type: ActionTypes.SIGNIN
-    });
-    return Observable.of({
-      type: notify.ActionTypes.OPEN,
-      error: error.xhr.response.error
-    })
-  })
+  .map(token => ({
+    type: ActionTypes.SIGNIN,
+    token
+  }))
+  .catch(error => Observable.of({
+    type: ActionTypes.REQUEST_FAILED,
+    error: error.xhr.response.error
+  }))
 });
+
+export const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => ({
+    type: notify.ActionTypes.OPEN,
+    error: action.error
+  })
+);
 
 export const redirectEpic = action$ => action$.ofType(ActionTypes.SIGNIN).do(action => {
   if (action.token) store.dispatch(push('/'));

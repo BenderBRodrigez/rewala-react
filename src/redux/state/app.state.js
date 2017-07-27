@@ -7,7 +7,7 @@ import * as auth from '../auth/reducers';
 import * as notify from '../notify/reducers';
 import * as questions from '../questions/reducers';
 
-import {signinEpic, redirectEpic, signupEpic} from '../auth/epics';
+import {signinEpic, signupEpic, redirectEpic, failEpic} from '../auth/epics';
 import {getEpic} from '../../shared/services/net.service';
 
 export const rootReducer = combineReducers({
@@ -22,4 +22,5 @@ export const rootEpic = combineEpics(
   signinEpic,
   redirectEpic,
   signupEpic,
+  failEpic,
 );

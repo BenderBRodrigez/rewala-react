@@ -3,5 +3,6 @@ export const ActionTypes = {
   SIGNOUT: 'auth/SIGNOUT',
   SIGNIN_REQUEST: 'auth/SIGNIN_REQUEST',
   SIGNUP_REQUEST: 'auth/SIGNUP_REQUEST',
+  REQUEST_FAILED: 'auth/REQUEST_FAILED',
   GET_USER: 'auth/GET_USER',
 };

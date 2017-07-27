@@ -24,6 +24,11 @@ export function reducer(state = initialState, action) {
         ...state,
         token: ''
       }
+    case ActionTypes.REQUEST_FAILED:
+      return {
+        ...state,
+        pending: false
+      }
     case ActionTypes.GET_USER:
       return {
         ...state,
