@@ -39,11 +39,10 @@ export const signupEpic = action$ => action$.ofType(ActionTypes.SIGNUP_REQUEST).
 });
 
 export const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => ({
-    type: notify.ActionTypes.OPEN,
-    error: action.error
-  })
-);
+  type: notify.ActionTypes.OPEN,
+  error: action.error
+}));
 
 export const redirectEpic = action$ => action$.ofType(ActionTypes.SIGNIN).do(action => {
-  if (action.token) store.dispatch(push('/'));
+  store.dispatch(push('/'));
 }).ignoreElements();

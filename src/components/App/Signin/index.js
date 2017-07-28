@@ -1,5 +1,4 @@
 import {Component} from 'react';
-import * as notify from '../../../redux/notify/actions';
 import {connect} from 'react-redux';
 import store from '../../../store';
 import * as auth from '../../../redux/auth/actions';
@@ -50,12 +49,6 @@ class Signin extends Component {
         email: this.state.email,
         password: this.state.password
       }
-    });
-  }
-
-  snackbarClose() {
-    store.dispatch({
-      type: notify.ActionTypes.CLOSE,
     });
   }
 

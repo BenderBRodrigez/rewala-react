@@ -3,8 +3,8 @@ import {Redirect} from 'react-router-dom';
 import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import Snackbar from 'material-ui/Snackbar';
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
+import ErrorNotify from '../../../shared/components/ErrorNotify';
 
 export default function () {
 
@@ -48,13 +48,7 @@ export default function () {
           </Paper>
         )}
       </div>
-      <Snackbar
-        className="error-message"
-        open={this.props.snackbarOpen}
-        message={this.props.message}
-        autoHideDuration={4000}
-        onRequestClose={this.snackbarClose}
-      />
+      <ErrorNotify />
     </div>
   );
 

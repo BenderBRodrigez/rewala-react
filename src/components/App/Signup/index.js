@@ -1,6 +1,5 @@
 import {Component} from 'react';
 import * as auth from '../../../redux/auth/actions';
-import * as notify from '../../../redux/notify/actions';
 import {connect} from 'react-redux';
 import store from '../../../store';
 import minLengthValidator from '../../../shared/validators/min-length';
@@ -62,11 +61,6 @@ class Signup extends Component {
     });
   }
 
-  snackbarClose() {
-    store.dispatch({
-      type: notify.ActionTypes.CLOSE,
-    });
-  }
 }
 
 export default connect(

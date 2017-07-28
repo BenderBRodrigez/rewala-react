@@ -1,5 +1,3 @@
-@import '../app.scss';
-
 .paper {
   width: 80%;
   max-width: 500px;
@@ -9,11 +7,6 @@
   padding: .6rem;
   .paper-button {
     margin: 1rem 0;
-  }
-}
-.error-message {
-  &>div {
-    background-color: $error-color !important;
   }
 }
 .home-menu {

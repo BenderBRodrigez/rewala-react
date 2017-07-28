@@ -1,7 +1,6 @@
 import {Component} from 'react';
 import store from '../../../store';
 import {connect} from 'react-redux';
-import * as notify from '../../../redux/notify/actions';
 import * as auth from '../../../redux/auth/actions';
 import * as questions from "../../../redux/questions/actions";
 import {netService} from '../../../shared/services/net.service';
@@ -18,8 +17,6 @@ const getUser = token => {
 const mapStateToProps = state => ({
   pending: state.auth.pending,
   token: state.auth.token,
-  snackbarOpen: state.notify.open,
-  message: state.notify.message,
   list: state.questions.list,
 });
 
@@ -64,12 +61,6 @@ class Home extends Component {
       url: '/clients/get-past-questions',
       dispatch_type: questions.ActionTypes.GET_LIST
     }));
-  }
-
-  snackbarClose() {
-    store.dispatch({
-      type: notify.ActionTypes.CLOSE,
-    });
   }
 
 }

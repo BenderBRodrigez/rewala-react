@@ -1,8 +1,8 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import Snackbar from 'material-ui/Snackbar';
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import ErrorNotify from '../../../shared/components/ErrorNotify';
 
 export default function () {
   return (
@@ -37,13 +37,7 @@ export default function () {
           />
         </div>
       </ValidatorForm>
-      <Snackbar
-        className="error-message"
-        open={this.props.snackbarOpen}
-        message={this.props.message}
-        autoHideDuration={4000}
-        onRequestClose={this.snackbarClose}
-      />
+      <ErrorNotify />
     </Paper>
   )
 }
