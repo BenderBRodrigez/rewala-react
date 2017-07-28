@@ -6,7 +6,8 @@ export function reducer(state = initialState, action) {
     case ActionTypes.GET_LIST:
       return {
         ...state,
-        list: action.payload.data
+        list: action.payload.response.data,
+        list_type: action.payload.list_type
       }
     default:
       return state;

@@ -32,7 +32,7 @@ export function reducer(state = initialState, action) {
     case ActionTypes.GET_USER:
       return {
         ...state,
-        user: action.payload
+        user: action.payload.response
       }
     default:
       return state;

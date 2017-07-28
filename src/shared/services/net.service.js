@@ -32,7 +32,7 @@ export const getEpic = action$ => action$.ofType('AJAX_GET').switchMap(action =>
   })
   .map(response => ({
     type: action.options.dispatch_type,
-    payload: response.xhr.response
+    payload: Object.assign(action.options, {response: response.xhr.response})
   }))
   .catch(error => Observable.of({
     type: notify.ActionTypes.OPEN,

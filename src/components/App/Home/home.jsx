@@ -8,6 +8,8 @@ import ErrorNotify from '../../../shared/components/ErrorNotify';
 
 export default function () {
 
+  const ListComponent = this.components[this.props.list_type];
+
   if (!this.props.token) return <Redirect to="/signin" />;
 
   return (
@@ -42,10 +44,12 @@ export default function () {
         </Menu>
       </Paper>
       <div className='home-list'>
+        {this.props.list_type}
         {this.props.list.map((item, i) =>
-          <Paper key={i} className='home-list-item'>
+          (<Paper key={i} className='home-list-item'>
             {item.text}
-          </Paper>
+            <ListComponent />
+          </Paper>)
         )}
       </div>
       <ErrorNotify />
