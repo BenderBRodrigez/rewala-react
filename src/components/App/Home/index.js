@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
   pending: state.auth.pending,
   token: state.auth.token,
   list: state.questions.list,
-  list_type: state.questions.list_type
+  list_type: state.questions.list_type,
 });
 
 class Home extends Component {

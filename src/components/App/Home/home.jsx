@@ -46,10 +46,11 @@ export default function () {
       <div className='home-list'>
         {this.props.list_type}
         {this.props.list.map((item, i) =>
-          (<Paper key={i} className='home-list-item'>
-            {item.text}
-            <ListComponent />
-          </Paper>)
+          <ListComponent
+            key={i}
+            id={item.id}
+            text={item.text}
+          />
         )}
       </div>
       <ErrorNotify />
