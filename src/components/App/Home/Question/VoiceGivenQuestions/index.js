@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import store from '../../../../store';
-import * as auth from '../../../../redux/auth/actions';
+// import store from '../../../../store';
+// import * as auth from '../../../../redux/auth/actions';
 
 const mapStateToProps = state => ({
   token: state.auth.token,
   user: state.auth.user,
 });
 
-class QuestionResults extends Component {
+class VoiceGivenQuestions extends Component {
   render() {
     return (
       <div>
-        QuestionResults
+        VoiceGivenQuestions
       </div>
     );
   }
@@ -21,4 +21,4 @@ class QuestionResults extends Component {
 
 export default connect(
   mapStateToProps,
-)(QuestionResults);
+)(VoiceGivenQuestions);

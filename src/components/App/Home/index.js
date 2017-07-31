@@ -4,11 +4,6 @@ import {connect} from 'react-redux';
 import * as auth from '../../../redux/auth/actions';
 import * as questions from "../../../redux/questions/actions";
 import {netService} from '../../../shared/services/net.service';
-import YourCreatedQuestions from './YourCreatedQuestions';
-import VoiceGivenQuestions from './VoiceGivenQuestions';
-import AwaitingYourAnswerQuestions from './AwaitingYourAnswerQuestions';
-import QuestionResults from './QuestionResults';
-import PastQuestions from './PastQuestions';
 import template from './home.jsx';
 import './home.css';
 
@@ -36,14 +31,6 @@ class Home extends Component {
     super(props);
     if (this.props.token) getUser(this.props.token);
   }
-
-  components = {
-    YourCreatedQuestions,
-    VoiceGivenQuestions,
-    AwaitingYourAnswerQuestions,
-    QuestionResults,
-    PastQuestions,
-  };
 
   render = template.bind(this);
 

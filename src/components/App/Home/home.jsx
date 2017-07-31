@@ -4,11 +4,10 @@ import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
+import Question from './Question';
 import ErrorNotify from '../../../shared/components/ErrorNotify';
 
 export default function () {
-
-  const ListComponent = this.components[this.props.list_type];
 
   if (!this.props.token) return <Redirect to="/signin" />;
 
@@ -46,7 +45,7 @@ export default function () {
       <div className='home-list'>
         {this.props.list_type}
         {this.props.list.map((item, i) =>
-          <ListComponent
+          <Question
             key={i}
             id={item.id}
             text={item.text}
