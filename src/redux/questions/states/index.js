@@ -1,4 +1,6 @@
 export const initialState = {
   list: [],
-  list_type: ''
+  list_type: '',
+  chart_type: 'doughnut',
+  results: []
 };
