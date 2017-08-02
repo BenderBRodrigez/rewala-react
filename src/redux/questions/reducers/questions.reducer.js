@@ -17,7 +17,12 @@ export function reducer(state = initialState, action) {
     case ActionTypes.GET_RESULTS:
       return {
         ...state,
-        results: action.payload.response.data
+        results: action.payload.response
+      }
+    case ActionTypes.DELETE:
+      return {
+        ...state,
+        deleted_id: action.id
       }
     default:
       return state;

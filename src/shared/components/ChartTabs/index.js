@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connect} from 'react-redux';
 import Chart from 'chart.js';
 import store from '../../../store';
@@ -10,7 +10,7 @@ import './chart-tabs.css';
 
 const mapStateToProps = state => ({
   chart_type: state.questions.chart_type,
-  results: state.questions.results,
+  results: state.questions.results.data,
 });
 
 const backgroundColor = [
