@@ -44,12 +44,14 @@ export default function () {
       </Paper>
       <div className='home-list'>
         {this.props.list_type}
-        {this.props.list.map((item, i) =>
-          <Question
+        {this.props.list.map((item, i) => {
+          const question_type = this.props.question_types.find(type => type.id == item.questionTypeId);
+          return <Question
             key={i}
             id={item.id}
+            type={question_type ? question_type.name : ''}
             text={item.text}
-          />
+          />}
         )}
       </div>
       <ErrorNotify />

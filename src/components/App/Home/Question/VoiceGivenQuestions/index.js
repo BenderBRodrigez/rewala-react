@@ -1,18 +1,34 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-// import store from '../../../../store';
-// import * as auth from '../../../../redux/auth/actions';
+import {List, ListItem} from 'material-ui/List';
+import store from '../../../../../store';
+import * as questions from "../../../../../redux/questions/actions";
+import {netService} from '../../../../../shared/services/net.service';
 
 const mapStateToProps = state => ({
-  token: state.auth.token,
-  user: state.auth.user,
+  results: state.questions.results,
 });
 
 class VoiceGivenQuestions extends Component {
+  componentWillMount() {
+    store.dispatch(netService.ajaxGet({
+      url: `/questions/${this.props.id}/questionOptions`,
+      dispatch_type: questions.ActionTypes.GET_RESULTS,
+    }));
+  }
+
   render() {
     return (
       <div>
-        VoiceGivenQuestions
+        <List className="created-list">
+          {this.props.results.map((item, i) =>
+            <ListItem
+              key={i}
+              id={item.id}
+              primaryText={item.text}
+            />
+          )}
+        </List>
       </div>
     );
   }

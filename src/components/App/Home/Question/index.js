@@ -37,7 +37,11 @@ class Question extends Component {
         onClick={this.activateQuestion}
       >
         {this.props.text}
-        {this.props.active_id==this.props.id && <QuestionDetail id={this.props.id} />}
+        {this.props.active_id==this.props.id &&
+        <QuestionDetail
+          id={this.props.id}
+          type={this.props.type}
+        />}
       </Paper>
     );
   }

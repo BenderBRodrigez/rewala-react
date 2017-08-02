@@ -9,7 +9,6 @@ import template from './chart-tabs.jsx';
 import './chart-tabs.css';
 
 const mapStateToProps = state => ({
-  chart_type: state.questions.chart_type,
   results: state.questions.results.data,
 });
 

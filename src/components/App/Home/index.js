@@ -24,6 +24,7 @@ const mapStateToProps = state => ({
   token: state.auth.token,
   list: state.questions.list,
   list_type: state.questions.list_type,
+  question_types: state.questions.question_types,
 });
 
 class Home extends Component {
