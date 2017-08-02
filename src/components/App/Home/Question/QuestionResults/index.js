@@ -1,24 +1,11 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-// import store from '../../../../store';
-// import * as auth from '../../../../redux/auth/actions';
-
-const mapStateToProps = state => ({
-  token: state.auth.token,
-  user: state.auth.user,
-});
+import ChartTabs from '../../../../../shared/components/ChartTabs';
 
 class QuestionResults extends Component {
   render() {
-    return (
-      <div>
-        QuestionResults
-      </div>
-    );
+    return <ChartTabs id={this.props.id} />
   }
 
 }
 
-export default connect(
-  mapStateToProps,
-)(QuestionResults);
+export default QuestionResults;
