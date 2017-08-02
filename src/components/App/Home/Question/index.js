@@ -43,7 +43,9 @@ class Question extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.active_id == nextProps.id || this.props.active_id == this.props.id;
+    return nextProps.active_id == this.props.active_id ||
+           nextProps.active_id == nextProps.id ||
+           this.props.active_id == this.props.id;
   }
 
   activateQuestion() {
