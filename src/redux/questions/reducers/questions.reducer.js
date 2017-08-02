@@ -14,11 +14,6 @@ export function reducer(state = initialState, action) {
         ...state,
         active_id: action.active_id
       }
-    case ActionTypes.CHANGE_CHART_TYPE:
-      return {
-        ...state,
-        chart_type: action.chart_type
-      }
     case ActionTypes.GET_RESULTS:
       return {
         ...state,
