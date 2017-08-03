@@ -9,6 +9,8 @@ import AwaitingYourAnswerQuestions from './AwaitingYourAnswerQuestions';
 import QuestionResults from './QuestionResults';
 import PastQuestions from './PastQuestions';
 
+import './question.css';
+
 const mapStateToProps = state => ({
   active_id: state.questions.active_id,
   list_type: state.questions.list_type,
@@ -41,6 +43,7 @@ class Question extends Component {
         <QuestionDetail
           id={this.props.id}
           type={this.props.type}
+          deadline={this.props.deadline}
         />}
       </Paper>
     );

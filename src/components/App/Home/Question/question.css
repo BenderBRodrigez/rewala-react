@@ -1,0 +1,11 @@
+.question-list {
+  padding: 1rem 0 0 0 !important;
+  text-align: left; }
+  .question-list .question-list-item {
+    padding: 1rem; }
+
+.question-deadline {
+  padding: 1rem; }
+
+.question-button {
+  margin: 0 .5rem; }

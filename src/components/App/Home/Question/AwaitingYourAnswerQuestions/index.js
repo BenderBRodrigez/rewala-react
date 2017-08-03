@@ -3,9 +3,13 @@ import {connect} from 'react-redux';
 import {List, ListItem} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import Divider from 'material-ui/Divider';
+import moment from 'moment';
 import store from '../../../../../store';
 import * as questions from "../../../../../redux/questions/actions";
 import {netService} from '../../../../../shared/services/net.service';
+import ErrorNotify from '../../../../../shared/components/ErrorNotify';
 
 const mapStateToProps = state => ({
   results: state.questions.results,
@@ -22,8 +26,8 @@ class AwaitingYourAnswerQuestions extends Component {
   render() {
     return (
       <div>
-        {this.props.type=='checkbox' && <List className="created-list">
-          {this.props.results.map((item, i) =>
+        {this.props.type=='checkbox' && <List className="question-list">
+          {this.props.results.length && this.props.results.map((item, i) =>
             <ListItem
               key={i}
               id={item.id}
@@ -32,17 +36,30 @@ class AwaitingYourAnswerQuestions extends Component {
             />
           )}
         </List>}
-        {this.props.type=='radio' && <RadioButtonGroup name="oneOption" className="created-list">
-          {this.props.results.map((item, i) =>
+        {this.props.type=='radio' && <RadioButtonGroup name="radioQuestion" className="question-list">
+          {this.props.results.length && this.props.results.map((item, i) =>
             <RadioButton
               key={i}
               value={item.id}
               label={item.text}
+              className="question-list-item"
             />
           )}
         </RadioButtonGroup>}
+        <Divider />
+        <div className="question-deadline">{moment(this.props.deadline).format('YYYY MM DD')}</div>
+        <RaisedButton
+          label="Vote"
+          className="question-button"
+          disabled={this.props.pending}
+          onClick={this.vote}
+        />
+        <ErrorNotify />
       </div>
     );
+  }
+
+  vote() {
   }
 
 }

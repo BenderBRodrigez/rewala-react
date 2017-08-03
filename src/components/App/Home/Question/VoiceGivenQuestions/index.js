@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {List, ListItem} from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import moment from 'moment';
 import store from '../../../../../store';
 import * as questions from "../../../../../redux/questions/actions";
 import {netService} from '../../../../../shared/services/net.service';
@@ -20,8 +22,8 @@ class VoiceGivenQuestions extends Component {
   render() {
     return (
       <div>
-        <List className="created-list">
-          {this.props.results.map((item, i) =>
+        <List className="question-list">
+          {this.props.results.length && this.props.results.map((item, i) =>
             <ListItem
               key={i}
               id={item.id}
@@ -29,6 +31,8 @@ class VoiceGivenQuestions extends Component {
             />
           )}
         </List>
+        <Divider />
+        <div className="question-deadline">{moment(this.props.deadline).format('YYYY MM DD')}</div>
       </div>
     );
   }

@@ -46,11 +46,14 @@ export default function () {
         {this.props.list_type}
         {this.props.list.map((item, i) => {
           const question_type = this.props.question_types.find(type => type.id == item.questionTypeId);
+          const createdAt = new Date(item.createdAt);
+          const deadline = new Date(createdAt).setSeconds(createdAt.getSeconds() + item.ttl);
           return <Question
             key={i}
             id={item.id}
-            type={question_type ? question_type.name : ''}
             text={item.text}
+            type={question_type ? question_type.name : ''}
+            deadline={deadline}
           />}
         )}
       </div>
