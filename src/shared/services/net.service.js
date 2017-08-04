@@ -1,5 +1,4 @@
-import {Observable} from 'rxjs';
-import * as notify from '../../redux/notify/actions';
+import {ActionTypes} from '../../redux/net/actions';
 
 class NetService {
   constructor() {
@@ -17,28 +16,10 @@ class NetService {
 
   ajaxGet(options) {
     return {
-      type: 'AJAX_GET',
+      type: ActionTypes.GET,
       options
     }
   }
 }
 
 export const netService = new NetService();
-
-export const getEpic = action$ => action$.ofType('AJAX_GET').switchMap(action => {
-  return Observable.ajax({
-    url: netService.baseUrl + netService.setToken(action.options.url),
-    method: 'GET'
-  })
-  .map(response => ({
-    type: action.options.dispatch_type,
-    payload: {
-      ...action.options,
-      response: response.xhr.response
-    }
-  }))
-  .catch(error => Observable.of({
-    type: notify.ActionTypes.OPEN,
-    error: error.xhr.response.error
-  }))
-});

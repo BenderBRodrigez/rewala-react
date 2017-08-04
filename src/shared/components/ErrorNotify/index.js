@@ -17,6 +17,7 @@ class ErrorNotify extends Component {
         className="error-message"
         open={this.props.snackbarOpen}
         message={this.props.message}
+        autoHideDuration={this.props.hideDuration || 5000}
         onRequestClose={this.close}
       />
     )

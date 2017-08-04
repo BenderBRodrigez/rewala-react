@@ -5,7 +5,7 @@ import {ActionTypes} from '../actions';
 import * as notify from '../../notify/actions';
 import {netService} from '../../../shared/services/net.service';
 
-export const signinEpic = action$ => action$.ofType(ActionTypes.SIGNIN_REQUEST).switchMap(action => {
+const signinEpic = action$ => action$.ofType(ActionTypes.SIGNIN_REQUEST).switchMap(action => {
   return Observable.ajax({
     url: `${netService.baseUrl}/clients/login`,
     method: 'POST',
@@ -22,7 +22,7 @@ export const signinEpic = action$ => action$.ofType(ActionTypes.SIGNIN_REQUEST).
   }))
 });
 
-export const signupEpic = action$ => action$.ofType(ActionTypes.SIGNUP_REQUEST).switchMap(action => {
+const signupEpic = action$ => action$.ofType(ActionTypes.SIGNUP_REQUEST).switchMap(action => {
   return Observable.ajax({
     url: `${netService.baseUrl}/clients`,
     method: 'POST',
@@ -38,11 +38,18 @@ export const signupEpic = action$ => action$.ofType(ActionTypes.SIGNUP_REQUEST).
   }))
 });
 
-export const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => ({
+const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => ({
   type: notify.ActionTypes.OPEN,
   error: action.error
 }));
 
-export const redirectEpic = action$ => action$.ofType(ActionTypes.SIGNIN).do(action => {
+const redirectEpic = action$ => action$.ofType(ActionTypes.SIGNIN).do(action => {
   store.dispatch(push('/'));
 }).ignoreElements();
+
+export const authEpics = [
+  signinEpic,
+  signupEpic,
+  redirectEpic,
+  failEpic,
+];

@@ -3,7 +3,6 @@ import {List, ListItem} from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
 import moment from 'moment';
-import ErrorNotify from '../../../../../shared/components/ErrorNotify';
 
 export default function() {
   return (
@@ -32,7 +31,6 @@ export default function() {
         disabled={this.props.pending}
         onClick={this.deleteQuestion}
       />
-      <ErrorNotify />
     </div>
   );
 }

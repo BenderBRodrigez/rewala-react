@@ -1,21 +1,26 @@
+import {Observable} from 'rxjs';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {List, ListItem} from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
-import moment from 'moment';
 import store from '../../../../../store';
 import * as questions from "../../../../../redux/questions/actions";
+import * as answers from "../../../../../redux/answers/actions";
 import {netService} from '../../../../../shared/services/net.service';
-import ErrorNotify from '../../../../../shared/components/ErrorNotify';
+import template from './awaiting-your-answer-questions';
 
 const mapStateToProps = state => ({
   results: state.questions.results,
+  user: state.auth.user,
+  answer: state.answers.answer,
 });
 
 class AwaitingYourAnswerQuestions extends Component {
+  constructor(props) {
+    super(props);
+    this.radioChange = this.radioChange.bind(this);
+    this.checkChange = this.checkChange.bind(this);
+    this.vote = this.vote.bind(this);
+  }
+
   componentWillMount() {
     store.dispatch(netService.ajaxGet({
       url: `/questions/${this.props.id}/questionOptions`,
@@ -23,43 +28,48 @@ class AwaitingYourAnswerQuestions extends Component {
     }));
   }
 
-  render() {
-    return (
-      <div>
-        {this.props.type=='checkbox' && <List className="question-list">
-          {this.props.results.length && this.props.results.map((item, i) =>
-            <ListItem
-              key={i}
-              id={item.id}
-              leftCheckbox={<Checkbox />}
-              primaryText={item.text}
-            />
-          )}
-        </List>}
-        {this.props.type=='radio' && <RadioButtonGroup name="radioQuestion" className="question-list">
-          {this.props.results.length && this.props.results.map((item, i) =>
-            <RadioButton
-              key={i}
-              value={item.id}
-              label={item.text}
-              className="question-list-item"
-            />
-          )}
-        </RadioButtonGroup>}
-        <Divider />
-        <div className="question-deadline">{moment(this.props.deadline).format('YYYY MM DD')}</div>
-        <RaisedButton
-          label="Vote"
-          className="question-button"
-          disabled={this.props.pending}
-          onClick={this.vote}
-        />
-        <ErrorNotify />
-      </div>
-    );
+  render = template.bind(this);
+
+  radioChange(event, value) {
+    this.setState({
+      createQuery: [
+        {
+          clientId: this.props.user.id,
+          questionOptionId: value,
+        }
+      ]
+    })
+  }
+
+  checkChange(event, isChecked) {
+    // console.log(event.target.value, isChecked)
+    let state = this.state ? this.state.createQuery : [];
+    if (isChecked) {
+      state.push({
+        clientId: this.props.user.id,
+        questionOptionId: event.target.value,
+      });
+    } else {
+      state = state.filter(item => item.questionOptionId != event.target.value)
+    }
+    this.setState({createQuery: state});
   }
 
   vote() {
+    // console.log(this.state.createQuery)
+    //
+    // let arr$ = this.state.createQuery.map(res => Observable.of(res));
+    //
+    // Observable.zip(...arr$)
+    // .map(arr => {
+    //   return arr;
+    // })
+    // .subscribe()
+
+    // store.dispatch({
+    //   type: answers.ActionTypes.CREATE_REQUEST,
+    //   body: this.state
+    // })
   }
 
 }

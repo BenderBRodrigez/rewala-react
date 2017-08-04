@@ -4,5 +4,5 @@ export const ActionTypes = {
   GET_RESULTS: 'questions/GET_RESULTS',
   DELETE_REQUEST: 'questions/DELETE_REQUEST',
   DELETE: 'questions/DELETE',
-  REQUEST_FAILED: 'questions/REQUEST_FAILED',
+  CREATE: 'questions/CTREATE',
 };
