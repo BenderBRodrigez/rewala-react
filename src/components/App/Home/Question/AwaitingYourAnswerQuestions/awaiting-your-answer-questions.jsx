@@ -14,7 +14,12 @@ export default function() {
           <ListItem
             key={i}
             id={item.id}
-            leftCheckbox={<Checkbox onCheck={this.checkChange} value={item.id} />}
+            leftCheckbox={
+              <Checkbox
+                onCheck={this.checkChange}
+                value={item.id}
+              />
+            }
             primaryText={item.text}
           />
         )}

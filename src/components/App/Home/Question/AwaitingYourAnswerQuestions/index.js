@@ -22,6 +22,9 @@ class AwaitingYourAnswerQuestions extends Component {
   }
 
   componentWillMount() {
+    this.setState({
+      clientId: this.props.user.id,
+    });
     store.dispatch(netService.ajaxGet({
       url: `/questions/${this.props.id}/questionOptions`,
       dispatch_type: questions.ActionTypes.GET_RESULTS,
@@ -32,44 +35,29 @@ class AwaitingYourAnswerQuestions extends Component {
 
   radioChange(event, value) {
     this.setState({
-      createQuery: [
-        {
-          clientId: this.props.user.id,
-          questionOptionId: value,
-        }
-      ]
+      questionOptionId: [value],
     })
   }
 
   checkChange(event, isChecked) {
-    // console.log(event.target.value, isChecked)
-    let state = this.state ? this.state.createQuery : [];
+    const value = event.target.value;
+    let questionOptionId = this.state.questionOptionId || [];
     if (isChecked) {
-      state.push({
-        clientId: this.props.user.id,
-        questionOptionId: event.target.value,
-      });
+      questionOptionId.push(value);
     } else {
-      state = state.filter(item => item.questionOptionId != event.target.value)
+      questionOptionId = questionOptionId.filter(item => item != value);
     }
-    this.setState({createQuery: state});
+    this.setState({questionOptionId});
   }
 
   vote() {
-    // console.log(this.state.createQuery)
-    //
-    // let arr$ = this.state.createQuery.map(res => Observable.of(res));
-    //
-    // Observable.zip(...arr$)
-    // .map(arr => {
-    //   return arr;
-    // })
-    // .subscribe()
-
-    // store.dispatch({
-    //   type: answers.ActionTypes.CREATE_REQUEST,
-    //   body: this.state
-    // })
+    store.dispatch({
+      type: answers.ActionTypes.CREATE_REQUEST,
+      payload: {
+        clientId: this.state.clientId,
+        questionOptionIds: this.state.questionOptionId,
+      }
+    })
   }
 
 }
