@@ -53,6 +53,7 @@ export default function () {
             id={item.id}
             text={item.text}
             type={question_type ? question_type.name : ''}
+            createdAt={createdAt.getTime()}
             deadline={deadline}
           />}
         )}

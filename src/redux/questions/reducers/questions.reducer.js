@@ -24,6 +24,11 @@ export function reducer(state = initialState, action) {
         ...state,
         deleted_id: action.id
       }
+    case ActionTypes.FINISH:
+      return {
+        ...state,
+        finished_id: action.id
+      }
     default:
       return state;
   }

@@ -27,7 +27,13 @@ class YourCreatedQuestions extends Component {
   render = template.bind(this);
 
   finishVoting() {
-
+    const now = Date.now();
+    const ttl = (.001 * (now - this.props.createdAt)).toFixed();
+    store.dispatch({
+      type: questions.ActionTypes.FINISH_REQUEST,
+      id: this.props.id,
+      ttl
+    })
   }
 
   deleteQuestion() {

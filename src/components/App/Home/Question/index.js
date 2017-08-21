@@ -43,6 +43,7 @@ class Question extends Component {
         <QuestionDetail
           id={this.props.id}
           type={this.props.type}
+          createdAt={this.props.createdAt}
           deadline={this.props.deadline}
         />}
       </Paper>

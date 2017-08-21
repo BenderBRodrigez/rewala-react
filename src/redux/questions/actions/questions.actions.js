@@ -4,5 +4,7 @@ export const ActionTypes = {
   GET_RESULTS: 'questions/GET_RESULTS',
   DELETE_REQUEST: 'questions/DELETE_REQUEST',
   DELETE: 'questions/DELETE',
-  CREATE: 'questions/CTREATE',
+  FINISH_REQUEST: 'questions/FINISH_REQUEST',
+  FINISH: 'questions/FINISH',
+  CREATE: 'questions/CREATE',
 };
