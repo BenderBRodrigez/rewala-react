@@ -34,16 +34,7 @@ const finishEpic = action$ => action$.ofType(ActionTypes.FINISH_REQUEST).switchM
   }))
 });
 
-const refreshEpic = action$ => action$.ofType(ActionTypes.DELETE, ActionTypes.FINISH).map(action => {
-  return netService.ajaxGet({
-    url: '/clients/get-questions',
-    dispatch_type: ActionTypes.GET_LIST,
-    list_type: 'YourCreatedQuestions',
-  });
-});
-
 export const questionsEpics = [
   deleteEpic,
   finishEpic,
-  refreshEpic,
 ];

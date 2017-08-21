@@ -44,7 +44,9 @@ export default function () {
       </Paper>
       <div className='home-list'>
         {this.props.list_type}
-        {this.props.list.map((item, i) => {
+        {this.props.list.filter(item => {
+          return item.id != this.props.finished_id && item.id != this.props.deleted_id;
+        }).map((item, i) => {
           const question_type = this.props.question_types.find(type => type.id == item.questionTypeId);
           const createdAt = new Date(item.createdAt);
           const deadline = new Date(createdAt).setSeconds(createdAt.getSeconds() + item.ttl);

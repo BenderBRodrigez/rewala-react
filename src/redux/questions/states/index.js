@@ -2,6 +2,9 @@ export const initialState = {
   list: [],
   list_type: '',
   results: [],
+  active_id: '',
+  deleted_id: '',
+  finished_id: '',
   //todo: get question types from db
   question_types: [
     {
