@@ -39,21 +39,22 @@ class Question extends Component {
         onClick={this.activateQuestion}
       >
         {this.props.text}
-        {this.props.active_id==this.props.id &&
+        {this.props.active_id === this.props.id &&
         <QuestionDetail
           id={this.props.id}
           type={this.props.type}
           createdAt={this.props.createdAt}
           deadline={this.props.deadline}
+          answers={this.props.answers}
         />}
       </Paper>
     );
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.active_id == this.props.active_id ||
-           nextProps.active_id == nextProps.id ||
-           this.props.active_id == this.props.id;
+    return nextProps.active_id === this.props.active_id ||
+           nextProps.active_id === nextProps.id ||
+           this.props.active_id === this.props.id;
   }
 
   activateQuestion() {

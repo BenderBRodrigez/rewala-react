@@ -11,6 +11,7 @@ export function reducer(state = initialState, action) {
         deleted_id: '',
         finished_id: '',
         voice_given_id: '',
+        active_id: '',
       }
     case ActionTypes.ACTIVATE:
       return {

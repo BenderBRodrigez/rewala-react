@@ -9,7 +9,8 @@ import moment from 'moment';
 export default function() {
   return (
     <div>
-      {this.props.type === 'checkbox' && <List className="question-list">
+      {this.props.type === 'checkbox' &&
+      <List className="question-list">
         {this.props.results.length && this.props.results.map((item, i) =>
           <ListItem
             key={i}
@@ -18,6 +19,7 @@ export default function() {
               <Checkbox
                 onCheck={this.checkChange}
                 value={item.id}
+                checked={this.checkAnswers(item.id)}
               />
             }
             primaryText={item.text}
@@ -28,6 +30,7 @@ export default function() {
       <RadioButtonGroup
         name="radioQuestion"
         onChange={this.radioChange}
+        valueSelected={this.state.questionOptionId[0]}
         className="question-list"
       >
         {this.props.results.map((item, i) =>
@@ -44,10 +47,10 @@ export default function() {
         {moment(this.props.deadline).format('YYYY MM DD')}
       </div>
       <RaisedButton
-        label="Vote"
+        label="Change My Vote"
         className="question-button"
         disabled={this.props.pending}
-        onClick={this.vote}
+        onClick={this.changeVote}
       />
     </div>
   );

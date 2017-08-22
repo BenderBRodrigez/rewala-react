@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connect} from 'react-redux';
 import store from '../../../../../store';
 import * as questions from "../../../../../redux/questions/actions";
@@ -44,7 +44,7 @@ class AwaitingYourAnswerQuestions extends Component {
     if (isChecked) {
       questionOptionId.push(value);
     } else {
-      questionOptionId = questionOptionId.filter(item => item != value);
+      questionOptionId = questionOptionId.filter(item => item !== value);
     }
     this.setState({questionOptionId});
   }

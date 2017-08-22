@@ -3,6 +3,7 @@ import store from '../../../store';
 import {connect} from 'react-redux';
 import * as auth from '../../../redux/auth/actions';
 import * as questions from "../../../redux/questions/actions";
+import * as answers from "../../../redux/answers/actions";
 import {netService} from '../../../shared/services/net.service';
 import template from './home.jsx';
 import './home.css';
@@ -22,8 +23,10 @@ const camelize = string => string.split(" ").reduce(function (result, char) {
 const mapStateToProps = state => ({
   pending: state.auth.pending,
   token: state.auth.token,
+  user: state.auth.user,
   list: state.questions.list,
   list_type: state.questions.list_type,
+  answers_list: state.answers.answers_list,
   question_types: state.questions.question_types,
   finished_id: state.questions.finished_id,
   deleted_id: state.questions.deleted_id,
@@ -33,6 +36,11 @@ const mapStateToProps = state => ({
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.getCreated = this.getCreated.bind(this);
+    this.getVoiceGiven = this.getVoiceGiven.bind(this);
+    this.getAwaiting = this.getAwaiting.bind(this);
+    this.getResults = this.getResults.bind(this);
+    this.getPast = this.getPast.bind(this);
     if (this.props.token) getUser(this.props.token);
   }
 
@@ -48,8 +56,8 @@ class Home extends Component {
 
   getVoiceGiven(event) {
     store.dispatch(netService.ajaxGet({
-      url: '/clients/get-voice-given-questions',
-      dispatch_type: questions.ActionTypes.GET_LIST,
+      url: `/clients/${this.props.user.id}/answers`,
+      dispatch_type: answers.ActionTypes.GET,
       list_type: camelize(event.target.textContent),
     }));
   }
