@@ -16,7 +16,7 @@ class VoiceGivenQuestions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      questionOptionId: this.props.answers,
+      questionOptionId: [...this.props.answers],
     };
     this.checkAnswers = this.checkAnswers.bind(this);
     this.radioChange = this.radioChange.bind(this);
