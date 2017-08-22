@@ -7,7 +7,10 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         list: action.payload.response.data,
-        list_type: action.payload.list_type
+        list_type: action.payload.list_type,
+        deleted_id: '',
+        finished_id: '',
+        voice_given_id: '',
       }
     case ActionTypes.ACTIVATE:
       return {
@@ -28,6 +31,11 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         finished_id: action.id
+      }
+    case ActionTypes.CREATE_ANSWER:
+      return {
+        ...state,
+        voice_given_id: action.id
       }
     default:
       return state;

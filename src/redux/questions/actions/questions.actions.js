@@ -6,6 +6,7 @@ export const ActionTypes = {
   DELETE: 'questions/DELETE',
   FINISH_REQUEST: 'questions/FINISH_REQUEST',
   FINISH: 'questions/FINISH',
+  CREATE_ANSWER: 'questions/CREATE_ANSWER',
   CREATE: 'questions/CREATE',
 };
 //2686360

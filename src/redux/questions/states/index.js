@@ -5,6 +5,7 @@ export const initialState = {
   active_id: '',
   deleted_id: '',
   finished_id: '',
+  voice_given_id: '',
   //todo: get question types from db
   question_types: [
     {

@@ -1,5 +1,6 @@
 import {Observable} from 'rxjs';
 import {ActionTypes} from '../actions';
+import * as questions from "../../questions/actions";
 import {netService} from '../../../shared/services/net.service';
 import * as net from '../../net/actions';
 
@@ -17,8 +18,8 @@ const createEpic = action$ => action$.ofType(ActionTypes.CREATE_REQUEST).switchM
   .zip(...query)
   .map(response => {
     return ({
-      type: ActionTypes.CREATE,
-      payload: response[response.length-1].xhr.response
+      type: questions.ActionTypes.CREATE_ANSWER,
+      id: action.payload.voice_given_id
     })
   })
   .catch(error => {

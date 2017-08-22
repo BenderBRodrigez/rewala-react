@@ -1,4 +1,4 @@
 export const ActionTypes = {
-  CREATE_REQUEST: 'questions/CREATE_REQUEST',
-  CREATE: 'questions/CREATE',
+  CREATE_REQUEST: 'answers/CREATE_REQUEST',
+  CREATE: 'answers/CREATE',
 };

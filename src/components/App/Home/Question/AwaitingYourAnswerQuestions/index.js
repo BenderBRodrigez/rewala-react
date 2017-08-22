@@ -1,4 +1,3 @@
-import {Observable} from 'rxjs';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import store from '../../../../../store';
@@ -54,6 +53,7 @@ class AwaitingYourAnswerQuestions extends Component {
     store.dispatch({
       type: answers.ActionTypes.CREATE_REQUEST,
       payload: {
+        voice_given_id: this.props.id,
         clientId: this.state.clientId,
         questionOptionIds: this.state.questionOptionId,
       }

@@ -27,6 +27,7 @@ const mapStateToProps = state => ({
   question_types: state.questions.question_types,
   finished_id: state.questions.finished_id,
   deleted_id: state.questions.deleted_id,
+  voice_given_id: state.questions.voice_given_id,
 });
 
 class Home extends Component {
