@@ -25,7 +25,7 @@ const createEpic = action$ => action$.ofType(ActionTypes.CREATE_REQUEST).switchM
   .catch(error => {
     return Observable.of({
       type: net.ActionTypes.REQUEST_FAILED,
-      error: error.xhr.response.error
+      error: error.xhr.response ? error.xhr.response.error : {message: 'error network connection'}
     })
   })
 });
@@ -50,7 +50,7 @@ const deleteEpic = action$ => action$.ofType(ActionTypes.DELETE_REQUEST).switchM
   .catch(error => {
     return Observable.of({
       type: net.ActionTypes.REQUEST_FAILED,
-      error: error.xhr.response.error
+      error: error.xhr.response ? error.xhr.response.error : {message: 'error network connection'}
     })
   })
 });

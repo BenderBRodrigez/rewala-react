@@ -19,7 +19,7 @@ const signinEpic = action$ => action$.ofType(ActionTypes.SIGNIN_REQUEST).switchM
   }))
   .catch(error => Observable.of({
     type: ActionTypes.REQUEST_FAILED,
-    error: error.xhr.response.error
+    error: error.xhr.response ? error.xhr.response.error : {message: 'error network connection'}
   }))
 });
 
@@ -35,7 +35,7 @@ const signupEpic = action$ => action$.ofType(ActionTypes.SIGNUP_REQUEST).switchM
   }))
   .catch(error => Observable.of({
     type: ActionTypes.REQUEST_FAILED,
-    error: error.xhr.response.error
+    error: error.xhr.response ? error.xhr.response.error : {message: 'error network connection'}
   }))
 });
 

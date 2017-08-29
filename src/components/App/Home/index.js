@@ -94,8 +94,6 @@ class Home extends Component {
   }
 
   getGroups(event) {
-    console.log(this.props.groups)
-
     store.dispatch({
       type: questions.ActionTypes.CLEAR_LIST,
     })

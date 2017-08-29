@@ -63,7 +63,9 @@ export default function () {
         </Menu>
       </Paper>
       <div className='home-list'>
-        {!this.props.list.length && this.props.groups.map((item, i) => {
+        {this.props.list_type || 'My Groups'}
+
+        {!this.props.list.length && !this.props.list_type && this.props.groups.map((item, i) => {
 
           return <Group
             key={i}
@@ -71,7 +73,6 @@ export default function () {
           />
         })}
 
-        {this.props.list_type}
         {!!this.props.list.length && this.props.list
         .filter(item => item.id !== this.props.finished_id && item.id !== this.props.deleted_id && item.id !== this.props.voice_given_id)
         .map((item, i) => {
@@ -86,8 +87,8 @@ export default function () {
             createdAt={createdAt.getTime()}
             deadline={deadline}
             answers={item.answerQuestionOptionIds}
-          />}
-        )}
+          />
+        })}
       </div>
       <ErrorNotify />
     </div>

@@ -17,7 +17,7 @@ const getEpic = action$ => action$.ofType(ActionTypes.GET).switchMap(action => {
   }))
   .catch(error => Observable.of({
     type: notify.ActionTypes.OPEN,
-    error: error.xhr.response.error
+    error: error.xhr.response ? error.xhr.response.error : {message: 'error network connection'}
   }))
 });
 
