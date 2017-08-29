@@ -2,6 +2,7 @@ import {Observable} from 'rxjs';
 import {push} from 'react-router-redux';
 import store from '../../../store';
 import {ActionTypes} from '../actions';
+import * as groups from '../../groups/actions';
 import * as notify from '../../notify/actions';
 import {netService} from '../../../shared/services/net.service';
 
@@ -38,6 +39,13 @@ const signupEpic = action$ => action$.ofType(ActionTypes.SIGNUP_REQUEST).switchM
   }))
 });
 
+const getUserEpic = action$ => action$.ofType(ActionTypes.GET_USER).map(action => {
+  return netService.ajaxGet({
+    url: `/clients/${action.payload.response.id}/groups`,
+    dispatch_type: groups.ActionTypes.GET_GROUPS
+  })
+});
+
 const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => ({
   type: notify.ActionTypes.OPEN,
   error: action.error
@@ -51,5 +59,6 @@ export const authEpics = [
   signinEpic,
   signupEpic,
   redirectEpic,
+  getUserEpic,
   failEpic,
 ];

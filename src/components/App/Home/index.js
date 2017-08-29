@@ -24,6 +24,7 @@ const mapStateToProps = state => ({
   pending: state.auth.pending,
   token: state.auth.token,
   user: state.auth.user,
+  groups: state.groups.list,
   list: state.questions.list,
   list_type: state.questions.list_type,
   answers_list: state.answers.answers_list,
@@ -41,6 +42,8 @@ class Home extends Component {
     this.getAwaiting = this.getAwaiting.bind(this);
     this.getResults = this.getResults.bind(this);
     this.getPast = this.getPast.bind(this);
+    this.createQuestion = this.createQuestion.bind(this);
+    this.getGroups = this.getGroups.bind(this);
     if (this.props.token) getUser(this.props.token);
   }
 
@@ -86,6 +89,17 @@ class Home extends Component {
     }));
   }
 
+  createQuestion(event) {
+    // store.dispatch()
+  }
+
+  getGroups(event) {
+    console.log(this.props.groups)
+
+    store.dispatch({
+      type: questions.ActionTypes.CLEAR_LIST,
+    })
+  }
 }
 
 export default connect(

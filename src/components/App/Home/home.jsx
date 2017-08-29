@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
 import Question from './Question';
+import Group from './Group';
 import ErrorNotify from '../../../shared/components/ErrorNotify';
 
 export default function () {
@@ -62,8 +63,16 @@ export default function () {
         </Menu>
       </Paper>
       <div className='home-list'>
+        {!this.props.list.length && this.props.groups.map((item, i) => {
+
+          return <Group
+            key={i}
+            name={item.name}
+          />
+        })}
+
         {this.props.list_type}
-        {this.props.list
+        {!!this.props.list.length && this.props.list
         .filter(item => item.id !== this.props.finished_id && item.id !== this.props.deleted_id && item.id !== this.props.voice_given_id)
         .map((item, i) => {
           const question_type = this.props.question_types.find(type => type.id === item.questionTypeId);

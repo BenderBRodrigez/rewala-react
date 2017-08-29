@@ -22,7 +22,7 @@ const getEpic = action$ => action$.ofType(ActionTypes.GET).switchMap(action => {
 });
 
 const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => {
-  return ({
+  return Observable.of({
     type: notify.ActionTypes.OPEN,
     error: action.error
   })

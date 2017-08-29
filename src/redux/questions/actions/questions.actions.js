@@ -1,5 +1,6 @@
 export const ActionTypes = {
   GET_LIST: 'questions/GET_LIST',
+  CLEAR_LIST: 'questions/CLEAR_LIST',
   ACTIVATE: 'questions/ACTIVATE',
   GET_RESULTS: 'questions/GET_RESULTS',
   DELETE_REQUEST: 'questions/DELETE_REQUEST',
@@ -9,4 +10,3 @@ export const ActionTypes = {
   CREATE_ANSWER: 'questions/CREATE_ANSWER',
   CREATE: 'questions/CREATE',
 };
-//2686360

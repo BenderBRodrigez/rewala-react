@@ -13,6 +13,16 @@ export function reducer(state = initialState, action) {
         voice_given_id: '',
         active_id: '',
       }
+    case ActionTypes.CLEAR_LIST:
+      return {
+        ...state,
+        list: [],
+        list_type: '',
+        deleted_id: '',
+        finished_id: '',
+        voice_given_id: '',
+        active_id: '',
+      }
     case ActionTypes.ACTIVATE:
       return {
         ...state,
