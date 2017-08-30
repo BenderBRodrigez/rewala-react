@@ -16,7 +16,9 @@ class GroupList extends Component {
 
           <Group
             key={i}
+            id={item.id}
             name={item.name}
+            memberList={item.memberIds}
           />
         ))}
 

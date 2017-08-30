@@ -13,7 +13,7 @@ import {authEpics} from '../auth/epics';
 import {netEpics} from '../net/epics';
 import {questionsEpics} from '../questions/epics';
 import {answersEpics} from '../answers/epics';
-// import {groupsEpics} from '../groups/epics';
+import {groupsEpics} from '../groups/epics';
 
 export const rootReducer = combineReducers({
   routing: routerReducer,
@@ -29,4 +29,5 @@ export const rootEpic = combineEpics(
   ...netEpics,
   ...questionsEpics,
   ...answersEpics,
+  ...groupsEpics,
 );

@@ -9,6 +9,11 @@ export function reducer(state = initialState, action) {
         list: action.payload.response,
         group_id: '',
       }
+    case ActionTypes.GET_CONTACTS:
+      return {
+        ...state,
+        contacts: action.payload.response.data,
+      }
     case ActionTypes.ACTIVATE:
       return {
         ...state,

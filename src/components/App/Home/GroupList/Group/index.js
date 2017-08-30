@@ -7,6 +7,7 @@ import template from './group';
 const mapStateToProps = state => ({
   groups: state.groups.list,
   group_id: state.groups.group_id,
+  contacts: state.groups.contacts,
 });
 
 class Question extends Component {

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as auth from '../../../redux/auth/actions';
 import * as questions from "../../../redux/questions/actions";
 import * as answers from "../../../redux/answers/actions";
+import * as groups from "../../../redux/groups/actions";
 import {netService} from '../../../shared/services/net.service';
 import template from './home.jsx';
 import './home.css';
@@ -86,9 +87,10 @@ class Home extends Component {
   }
 
   getGroups() {
-    // store.dispatch({
-    //   type: questions.ActionTypes.CLEAR_LIST,
-    // })
+    store.dispatch({
+      type: groups.ActionTypes.ACTIVATE,
+      group_id: '',
+    })
   }
 
   getSettings() {
