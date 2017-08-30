@@ -1,9 +1,9 @@
 import {Component} from 'react';
 import {connect} from 'react-redux';
-import store from '../../../../../store';
-import * as questions from "../../../../../redux/questions/actions";
-import * as answers from "../../../../../redux/answers/actions";
-import {netService} from '../../../../../shared/services/net.service';
+import store from '../../../../../../store';
+import * as questions from "../../../../../../redux/questions/actions";
+import * as answers from "../../../../../../redux/answers/actions";
+import {netService} from '../../../../../../shared/services/net.service';
 import template from './awaiting-your-answer-questions';
 
 const mapStateToProps = state => ({

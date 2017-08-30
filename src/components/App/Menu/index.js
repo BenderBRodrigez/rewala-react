@@ -20,7 +20,7 @@ class Menu extends Component {
       <div>
         {!this.props.token && <Link to="/signin">Signin</Link>}
         {!this.props.token && <Link to="/signup">Signup</Link>}
-        {this.props.token && <Link to="/">Home</Link>}
+        {this.props.token && <Link to="/home">Home</Link>}
         {this.props.token && this.props.user && <span>{this.props.user.username}</span>}
         {this.props.token && <a href="/" onClick={this.signout}>Signout</a>}
       </div>

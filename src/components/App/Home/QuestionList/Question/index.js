@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Paper from 'material-ui/Paper';
-import store from '../../../../store';
-import * as questions from "../../../../redux/questions/actions";
+import store from '../../../../../store';
+import * as questions from "../../../../../redux/questions/actions";
 import YourCreatedQuestions from './YourCreatedQuestions';
 import VoiceGivenQuestions from './VoiceGivenQuestions';
 import AwaitingYourAnswerQuestions from './AwaitingYourAnswerQuestions';

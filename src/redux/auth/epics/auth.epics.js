@@ -52,7 +52,7 @@ const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(actio
 }));
 
 const redirectEpic = action$ => action$.ofType(ActionTypes.SIGNIN).do(action => {
-  store.dispatch(push('/'));
+  store.dispatch(push('/home'));
 }).ignoreElements();
 
 export const authEpics = [

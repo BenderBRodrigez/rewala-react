@@ -1,9 +1,9 @@
 import {Component} from 'react';
 import {connect} from 'react-redux';
-import store from '../../../../../store';
-import * as answers from "../../../../../redux/answers/actions";
-import * as questions from "../../../../../redux/questions/actions";
-import {netService} from '../../../../../shared/services/net.service';
+import store from '../../../../../../store';
+import * as answers from "../../../../../../redux/answers/actions";
+import * as questions from "../../../../../../redux/questions/actions";
+import {netService} from '../../../../../../shared/services/net.service';
 import template from './voice-given-questions';
 
 const mapStateToProps = state => ({

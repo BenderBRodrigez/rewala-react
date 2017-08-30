@@ -93,7 +93,7 @@ class Home extends Component {
     // store.dispatch()
   }
 
-  getGroups(event) {
+  getGroups() {
     store.dispatch({
       type: questions.ActionTypes.CLEAR_LIST,
     })

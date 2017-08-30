@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import {connect} from 'react-redux';
-import store from '../../../../store';
-import * as groups from "../../../../redux/groups/actions";
+import store from '../../../../../store';
+import * as groups from "../../../../../redux/groups/actions";
 import template from './group';
 
 const mapStateToProps = state => ({

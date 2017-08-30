@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Redirect, Switch, Route} from 'react-router-dom';
 import Home from './Home';
 import Signin from './Signin';
 import Signup from './Signup';
@@ -14,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Redirect to="/home" />
         <header>
           <img src={process.env.PUBLIC_URL + '/assets/logo.svg'} className="App-logo" alt="logo" />
           <h2>Title</h2>
@@ -26,7 +27,7 @@ class App extends Component {
         <main>
           <Menu />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route path="/home" component={Home} />
             <Route exact path="/signin" component={Signin} />
             <Route exact path="/signup" component={Signup} />
           </Switch>
