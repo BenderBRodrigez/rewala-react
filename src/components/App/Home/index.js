@@ -21,17 +21,8 @@ const camelize = string => string.split(" ").reduce(function (result, char) {
 });
 
 const mapStateToProps = state => ({
-  pending: state.auth.pending,
   token: state.auth.token,
   user: state.auth.user,
-  groups: state.groups.list,
-  list: state.questions.list,
-  list_type: state.questions.list_type,
-  answers_list: state.answers.answers_list,
-  question_types: state.questions.question_types,
-  finished_id: state.questions.finished_id,
-  deleted_id: state.questions.deleted_id,
-  voice_given_id: state.questions.voice_given_id,
 });
 
 class Home extends Component {
@@ -44,6 +35,7 @@ class Home extends Component {
     this.getPast = this.getPast.bind(this);
     this.createQuestion = this.createQuestion.bind(this);
     this.getGroups = this.getGroups.bind(this);
+    this.getSettings = this.getSettings.bind(this);
     if (this.props.token) getUser(this.props.token);
   }
 
@@ -94,9 +86,13 @@ class Home extends Component {
   }
 
   getGroups() {
-    store.dispatch({
-      type: questions.ActionTypes.CLEAR_LIST,
-    })
+    // store.dispatch({
+    //   type: questions.ActionTypes.CLEAR_LIST,
+    // })
+  }
+
+  getSettings() {
+    //
   }
 }
 
