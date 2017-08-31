@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connect} from 'react-redux';
-import Paper from 'material-ui/Paper';
 import store from '../../../../../store';
 import * as groups from "../../../../../redux/groups/actions";
+import template from './create-group';
+import {netService} from "../../../../../shared/services/net.service";
 
 const mapStateToProps = state => ({
   contacts: state.groups.contacts,
@@ -11,18 +12,37 @@ const mapStateToProps = state => ({
 class CreateGroup extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      email: '',
+    };
+    this.handleEmail = this.handleEmail.bind(this);
+    this.findContact = this.findContact.bind(this);
+    this.checkChange = this.checkChange.bind(this);
+    this.createGroup = this.createGroup.bind(this);
   }
 
-  render() {
-    return (
-      <Paper
-        className='home-list-item'
-      >
-        Create New Group
-      </Paper>
-    );
+  render = template.bind(this);
+
+  handleEmail(event) {
+    this.setState({
+      email: event.target.value
+    })
   }
 
+  checkChange() {
+
+  }
+
+  findContact() {
+    store.dispatch(netService.ajaxGet({
+      url: `/clients/find-by-email?email=${this.state.email}`,
+      dispatch_type: groups.ActionTypes.FIND,
+    }));
+  }
+
+  createGroup() {
+
+  }
 }
 
 export default connect(

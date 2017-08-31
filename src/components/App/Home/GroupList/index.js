@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import IconButton from 'material-ui/IconButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import store from '../../../../store';
-import * as groups from "../../../../redux/groups/actions";
 import Group from './Group';
 import CreateGroup from './CreateGroup';
+import './group-list.css';
 
 const mapStateToProps = state => ({
   groups: state.groups.list,

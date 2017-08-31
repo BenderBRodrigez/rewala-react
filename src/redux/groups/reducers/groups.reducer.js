@@ -19,6 +19,11 @@ export function reducer(state = initialState, action) {
         ...state,
         group_id: action.group_id
       }
+    case ActionTypes.FIND:
+      return {
+        ...state,
+        contacts: [...state.contacts, action.payload.response.data],
+      }
     default:
       return state;
   }
