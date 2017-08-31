@@ -16,6 +16,9 @@ export default function() {
         <Divider />
         <TextField
           hintText="Group Name"
+          onChange={this.handleName}
+          name="name"
+          value={this.state.name}
         />
         <Divider />
         <ValidatorForm

@@ -45,6 +45,13 @@ class GroupList extends Component {
     );
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.groups.length === this.props.groups.length) return;
+    this.setState({
+      displayCreateForm: false
+    });
+  }
+
   getNewGroup() {
     this.setState(prevState => ({
       displayCreateForm: !prevState.displayCreateForm
