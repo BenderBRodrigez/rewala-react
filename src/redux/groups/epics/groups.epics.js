@@ -19,7 +19,7 @@ const createEpic = action$ => action$.ofType(ActionTypes.CREATE_REQUEST).switchM
   })
   .map(response => ({
     type: ActionTypes.CREATE_GROUP,
-    group: action.payload,
+    group: response.xhr.response,
   }))
   .catch(error => Observable.of({
     type: net.ActionTypes.REQUEST_FAILED,

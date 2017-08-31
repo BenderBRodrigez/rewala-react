@@ -23,7 +23,7 @@ class GroupList extends Component {
     return (
       <div>
         <div>
-          My Groups
+          {this.props.title || 'My Groups'}
           <IconButton
             tooltip="create new group"
             onClick={this.getNewGroup}
@@ -38,6 +38,7 @@ class GroupList extends Component {
             id={item.id}
             name={item.name}
             memberList={item.memberIds}
+            selector={this.props.selector}
           />
         ))}
 
