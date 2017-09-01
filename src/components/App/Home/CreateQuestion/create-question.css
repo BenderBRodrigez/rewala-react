@@ -1,2 +1,5 @@
 .create-question-divider {
   margin: 1rem 0 !important; }
+
+.create-question-button {
+  margin: 0 .5rem 1rem; }

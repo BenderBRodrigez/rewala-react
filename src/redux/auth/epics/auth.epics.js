@@ -1,5 +1,5 @@
 import {Observable} from 'rxjs';
-import {push} from 'react-router-redux';
+import {routerActions} from 'react-router-redux';
 import store from '../../../store';
 import {ActionTypes} from '../actions';
 import * as groups from '../../groups/actions';
@@ -52,7 +52,7 @@ const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(actio
 }));
 
 const redirectEpic = action$ => action$.ofType(ActionTypes.SIGNIN).do(action => {
-  store.dispatch(push('/home'));
+  store.dispatch(routerActions.push('/home'));
 }).ignoreElements();
 
 export const authEpics = [

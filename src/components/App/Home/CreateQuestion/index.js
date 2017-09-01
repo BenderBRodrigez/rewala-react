@@ -1,5 +1,7 @@
 import {Component} from 'react';
 import {connect} from 'react-redux';
+import store from '../../../../store';
+import * as questions from "../../../../redux/questions/actions";
 import template from './create-question';
 
 const mapStateToProps = state => ({
@@ -47,6 +49,7 @@ class CreateQuestion extends Component {
   }
 
   addAnswer() {
+    if (!this.state.answer) return;
     this.setState(prevState => ({
       answers: [...prevState.answers, this.state.answer],
       answer: '',
@@ -62,7 +65,19 @@ class CreateQuestion extends Component {
   createQuestion() {
     const now = new Date();
     const ttl = Math.floor((this.state.deadline.getTime() - now.getTime()) / 1000);
-    console.log(this.state, this.props.group_id, this.props.user.id, ttl)
+    store.dispatch({
+      type: questions.ActionTypes.CREATE_REQUEST,
+      payload: {
+        question: {
+          clientId: this.props.user.id,
+          groupId: this.props.group_id,
+          questionTypeId: this.state.questionTypeId,
+          text: this.state.question,
+          ttl
+        },
+        questionOptions: this.state.answers
+      }
+    });
   }
 }
 

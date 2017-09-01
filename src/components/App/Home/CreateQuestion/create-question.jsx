@@ -67,6 +67,7 @@ export default function() {
           label="create question"
           onClick={this.createQuestion}
           disabled={this.props.pending}
+          className="create-question-button"
         />
       </div>
     )

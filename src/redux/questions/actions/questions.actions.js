@@ -7,5 +7,7 @@ export const ActionTypes = {
   FINISH_REQUEST: 'questions/FINISH_REQUEST',
   FINISH: 'questions/FINISH',
   CREATE_ANSWER: 'questions/CREATE_ANSWER',
+  CREATE_REQUEST: 'questions/CREATE_REQUEST',
+  CREATE_OPTIONS: 'question/CREATE_OPTIONS',
   CREATE: 'questions/CREATE',
 };
