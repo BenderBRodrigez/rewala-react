@@ -21,12 +21,10 @@ const getEpic = action$ => action$.ofType(ActionTypes.GET).switchMap(action => {
   }))
 });
 
-const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => {
-  return Observable.of({
-    type: notify.ActionTypes.OPEN,
-    error: action.error
-  })
-});
+const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => ({
+  type: notify.ActionTypes.OPEN,
+  error: action.error
+}));
 
 export const netEpics = [
   getEpic,

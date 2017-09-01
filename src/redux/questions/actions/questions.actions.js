@@ -8,6 +8,6 @@ export const ActionTypes = {
   FINISH: 'questions/FINISH',
   CREATE_ANSWER: 'questions/CREATE_ANSWER',
   CREATE_REQUEST: 'questions/CREATE_REQUEST',
-  CREATE_OPTIONS: 'question/CREATE_OPTIONS',
+  CREATE_OPTIONS: 'questions/CREATE_OPTIONS',
   CREATE: 'questions/CREATE',
 };

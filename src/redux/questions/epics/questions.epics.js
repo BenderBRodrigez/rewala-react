@@ -49,11 +49,10 @@ const createEpic = action$ => action$.ofType(ActionTypes.CREATE_REQUEST).switchM
       questionId: response.xhr.response.id
     })),
   }))
-  .catch(error => {
-    Observable.of({
+  .catch(error => Observable.of({
     type: net.ActionTypes.REQUEST_FAILED,
     error: error.xhr.response ? error.xhr.response.error : {message: 'error network connection'}
-  })})
+  }))
 });
 
 const createOptionsEpic = action$ => action$.ofType(ActionTypes.CREATE_OPTIONS).switchMap(action => {
