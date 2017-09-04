@@ -7,6 +7,7 @@ import GroupList from '../GroupList';
 import RaisedButton from 'material-ui/RaisedButton';
 import {List, ListItem} from 'material-ui/List';
 import DatePicker from 'material-ui/DatePicker';
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import './create-question.css';
 
 export default function() {
@@ -17,6 +18,7 @@ export default function() {
           className='home-list-item'
         >
           <TextField
+            className="question-input"
             hintText="Enter Question"
             onChange={this.handleQuestion}
             name="question"
@@ -38,20 +40,28 @@ export default function() {
               />
             ))}
           </List>}
-          <TextField
-            hintText="Enter Answer"
-            onChange={this.handleAnswer}
-            name="question"
-            value={this.state.answer}
-          />
-          <RaisedButton
-            label="add"
-            onClick={this.addAnswer}
-            disabled={this.props.pending}
-          />
+          <ValidatorForm
+            onSubmit={this.addAnswer}
+          >
+            <TextValidator
+              hintText="Enter Answer"
+              onChange={this.handleAnswer}
+              name="question"
+              value={this.state.answer}
+              validators={['required']}
+              errorMessages={['required']}
+            />
+            <RaisedButton
+              type="submit"
+              label="add"
+              disabled={this.props.pending}
+            />
+          </ValidatorForm>
+
           <Divider className='create-question-divider' />
           <DatePicker
             hintText="Question Deadline"
+            value={this.state.deadline}
             shouldDisableDate={date => date < new Date()}
             autoOk={true}
             onChange={this.handleDate}
@@ -66,7 +76,7 @@ export default function() {
         <RaisedButton
           label="create question"
           onClick={this.createQuestion}
-          disabled={this.props.pending}
+          disabled={!this.isValidForm()}
           className="create-question-button"
         />
       </div>

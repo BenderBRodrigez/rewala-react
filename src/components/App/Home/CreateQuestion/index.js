@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import {connect} from 'react-redux';
+import moment from 'moment';
 import store from '../../../../store';
 import * as questions from "../../../../redux/questions/actions";
 import template from './create-question';
@@ -18,7 +19,7 @@ class CreateQuestion extends Component {
       answer: '',
       answers: [],
       questionTypeId: this.props.question_types[0].id,
-      deadline: null,
+      deadline: moment().add({days: 1}).toDate(),
     };
     this.handleQuestion = this.handleQuestion.bind(this);
     this.handleAnswer = this.handleAnswer.bind(this);
@@ -26,6 +27,7 @@ class CreateQuestion extends Component {
     this.addAnswer = this.addAnswer.bind(this);
     this.handleDate = this.handleDate.bind(this);
     this.createQuestion = this.createQuestion.bind(this);
+    this.isValidForm = this.isValidForm.bind(this);
   }
 
   render = template.bind(this);
@@ -60,6 +62,13 @@ class CreateQuestion extends Component {
     this.setState({
       deadline: date
     })
+  }
+
+  isValidForm() {
+    return this.state.deadline &&
+           this.props.group_id &&
+           this.state.question &&
+           this.state.answers.length;
   }
 
   createQuestion() {

@@ -73,7 +73,7 @@ const createOptionsEpic = action$ => action$.ofType(ActionTypes.CREATE_OPTIONS).
 });
 
 const redirectEpic = action$ => action$.ofType(ActionTypes.CREATE).do(action => {
-  store.dispatch(routerActions.push('/home'));
+  store.dispatch(routerActions.push('/home/question/YourCreatedQuestions'));
 }).ignoreElements();
 
 export const questionsEpics = [
