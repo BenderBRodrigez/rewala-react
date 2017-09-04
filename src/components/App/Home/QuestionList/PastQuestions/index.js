@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ChartTabs from '../../../../../../shared/components/ChartTabs';
+import ChartTabs from '../../../../../shared/components/ChartTabs';
 
 class PastQuestions extends Component {
   render() {

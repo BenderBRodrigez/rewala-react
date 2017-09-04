@@ -1,8 +1,6 @@
 export const initialState = {
   list: [],
-  list_type: '',
   results: [],
-  active_id: '',
   deleted_id: '',
   finished_id: '',
   voice_given_id: '',
