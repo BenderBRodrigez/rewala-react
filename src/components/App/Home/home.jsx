@@ -65,12 +65,13 @@ export default function () {
         </Menu>
       </Paper>
       <div className='home-list'>
+        {!!this.props.contacts.length &&
         <Switch>
           <Route exact path={`${this.props.match.url}/question/create`} component={CreateQuestion} />
           <Route path={`${this.props.match.url}/question/:list`} component={QuestionList} />
           <Route path={`${this.props.match.url}/groups`} component={GroupList} />
           <Route path={`${this.props.match.url}/settings`} component={Settings} />
-        </Switch>
+        </Switch>}
       </div>
       <ErrorNotify />
     </div>

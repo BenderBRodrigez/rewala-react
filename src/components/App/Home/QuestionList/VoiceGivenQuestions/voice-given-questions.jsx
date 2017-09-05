@@ -11,7 +11,7 @@ export default function() {
     <div>
       {this.props.type === 'checkbox' &&
       <List className="question-list">
-        {this.props.results.length && this.props.results.map((item, i) =>
+        {!!this.props.results.length && this.props.results.map((item, i) =>
           <ListItem
             key={i}
             id={item.id}

@@ -7,6 +7,7 @@ import store, {history} from './store';
 import App from './components/App';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import registerServiceWorker from './registerServiceWorker';
+
 import './index.css';
 
 injectTapEventPlugin();

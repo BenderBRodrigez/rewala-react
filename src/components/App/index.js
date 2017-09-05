@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Redirect to="/home" />
+        {window.location.pathname === '/' && <Redirect to="/home" />}
         <header>
           <img src={process.env.PUBLIC_URL + '/assets/logo.svg'} className="App-logo" alt="logo" />
           <h2>Title</h2>

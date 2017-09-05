@@ -72,6 +72,12 @@ const createOptionsEpic = action$ => action$.ofType(ActionTypes.CREATE_OPTIONS).
   }))
 });
 
+const createAnswerEpic = action$ => action$.ofType(ActionTypes.CREATE_ANSWER)
+.filter(action => !action.id)
+.do(action => {
+  store.dispatch(routerActions.push('/home/question/YourCreatedQuestions'));
+}).ignoreElements();
+
 const redirectEpic = action$ => action$.ofType(ActionTypes.CREATE).do(action => {
   store.dispatch(routerActions.push('/home/question/YourCreatedQuestions'));
 }).ignoreElements();
@@ -81,5 +87,6 @@ export const questionsEpics = [
   finishEpic,
   createEpic,
   createOptionsEpic,
+  createAnswerEpic,
   redirectEpic,
 ];

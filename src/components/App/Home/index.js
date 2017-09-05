@@ -16,7 +16,7 @@ const getUser = token => {
 
 const mapStateToProps = state => ({
   token: state.auth.token,
-  user: state.auth.user,
+  contacts: state.groups.contacts,
 });
 
 class Home extends Component {

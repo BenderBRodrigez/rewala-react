@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Group from './Group';
 import CreateGroup from './CreateGroup';
+
 import './group-list.css';
 
 const mapStateToProps = state => ({
