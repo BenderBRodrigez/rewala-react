@@ -3,6 +3,8 @@ import {List, ListItem} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
 import Divider from 'material-ui/Divider';
 import moment from 'moment';
 
@@ -50,8 +52,28 @@ export default function() {
         label="Change My Vote"
         className="question-button"
         disabled={this.props.pending}
-        onClick={this.changeVote}
+        onClick={this.openDialog}
       />
+      <Dialog
+        actions={[
+          <FlatButton
+            label="Cancel"
+            primary={true}
+            onClick={this.closeDialog}
+          />,
+          <FlatButton
+            label="Submit"
+            primary={true}
+            keyboardFocused={true}
+            onClick={this.changeVote}
+          />,
+        ]}
+        modal={false}
+        open={this.state.dialog}
+        onRequestClose={this.closeDialog}
+      >
+        Change vote?
+    </Dialog>
     </div>
   );
 }

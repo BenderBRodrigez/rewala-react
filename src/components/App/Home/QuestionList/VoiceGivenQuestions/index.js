@@ -17,11 +17,14 @@ class VoiceGivenQuestions extends Component {
     super(props);
     this.state = {
       questionOptionId: [...this.props.answers],
+      dialog: false,
     };
     this.checkAnswers = this.checkAnswers.bind(this);
     this.radioChange = this.radioChange.bind(this);
     this.checkChange = this.checkChange.bind(this);
     this.changeVote = this.changeVote.bind(this);
+    this.openDialog = this.openDialog.bind(this);
+    this.closeDialog = this.closeDialog.bind(this);
   }
 
   componentWillMount() {
@@ -52,6 +55,18 @@ class VoiceGivenQuestions extends Component {
       questionOptionId = questionOptionId.filter(item => item !== value);
     }
     this.setState({questionOptionId});
+  }
+
+  openDialog() {
+    this.setState({
+      dialog: true
+    });
+  }
+
+  closeDialog() {
+    this.setState({
+      dialog: false
+    })
   }
 
   changeVote() {
