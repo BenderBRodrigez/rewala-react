@@ -7,7 +7,6 @@ import template from './your-created-questions.jsx';
 
 const mapStateToProps = state => ({
   results: state.questions.results,
-  // pending: state.auth.pending,
 });
 
 class YourCreatedQuestions extends Component {

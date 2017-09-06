@@ -1,5 +1,6 @@
 export const initialState = {
   list: [],
+  list_type: '',
   results: [],
   deleted_id: '',
   finished_id: '',

@@ -14,6 +14,7 @@ import template from './question-list';
 const mapStateToProps = state => ({
   user: state.auth.user,
   list: state.questions.list,
+  list_type: state.questions.list_type,
   question_types: state.questions.question_types,
   finished_id: state.questions.finished_id,
   deleted_id: state.questions.deleted_id,
@@ -72,6 +73,7 @@ class QuestionList extends Component {
     store.dispatch(netService.ajaxGet({
       url: this.urls[list_type],
       dispatch_type,
+      list_type,
     }));
   }
 

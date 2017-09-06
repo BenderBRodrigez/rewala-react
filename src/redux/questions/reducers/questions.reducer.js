@@ -7,6 +7,7 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         list: action.payload.response.data,
+        list_type: action.payload.list_type,
         deleted_id: '',
         finished_id: '',
         voice_given_id: '',

@@ -44,6 +44,9 @@ const signoutEpic = action$ => action$.ofType(ActionTypes.SIGNOUT).do(action => 
 }).ignoreElements();
 
 const getUserEpic = action$ => action$.ofType(ActionTypes.GET_USER).map(action => {
+  netService.subscribeTo('create');
+  netService.subscribeTo('delete');
+  netService.subscribeTo('deadline');
   return netService.ajaxGet({
     url: `/clients/${action.payload.response.id}/groups`,
     dispatch_type: groups.ActionTypes.GET_GROUPS
@@ -56,9 +59,6 @@ const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(actio
 }));
 
 const redirectEpic = action$ => action$.ofType(ActionTypes.SIGNIN).do(action => {
-  netService.subscribeTo('create');
-  netService.subscribeTo('delete');
-  netService.subscribeTo('deadline');
   store.dispatch(routerActions.push('/home'));
 }).ignoreElements();
 

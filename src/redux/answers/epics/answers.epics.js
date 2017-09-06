@@ -51,6 +51,7 @@ const getEpic = action$ => action$.ofType(ActionTypes.GET).map(action => {
   return netService.ajaxGet({
     url: '/clients/get-voice-given-questions',
     dispatch_type: questions.ActionTypes.GET_LIST,
+    list_type: action.payload.list_type,
   })
 });
 

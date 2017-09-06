@@ -1,5 +1,6 @@
 import * as net from '../../redux/net/actions';
 import * as notify from '../../redux/notify/actions';
+import * as questions from '../../redux/questions/actions';
 import store from '../../store';
 import * as io from "socket.io-client";
 
@@ -54,14 +55,37 @@ class NetService {
       switch(event) {
         case 'create': {
           message = 'New question created and awaiting your vote';
+          if (store.getState().questions.list_type === 'AwaitingYourAnswerQuestions') {
+            store.dispatch(this.ajaxGet({
+              url: '/clients/get-awaiting-questions',
+              dispatch_type: questions.ActionTypes.GET_LIST,
+              list_type: store.getState().questions.list_type
+            }))
+          }
           break;
         }
         case 'delete': {
           message = `Question was deleted: ${data.text}`;
+          store.dispatch({
+            type: questions.ActionTypes.DELETE,
+            id: data.id,
+          });
           break;
         }
         case 'deadline': {
           message = `Voting is completed: ${data.text}`;
+          if (store.getState().questions.list_type === 'QuestionResults') {
+            store.dispatch(this.ajaxGet({
+              url: '/clients/get-completed-questions',
+              dispatch_type: questions.ActionTypes.GET_LIST,
+              list_type: store.getState().questions.list_type
+            }))
+          } else {
+            store.dispatch({
+              type: questions.ActionTypes.FINISH,
+              id: data.id,
+            })
+          }
           break;
         }
         default: {
