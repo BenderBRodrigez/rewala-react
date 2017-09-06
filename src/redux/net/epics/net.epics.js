@@ -16,13 +16,13 @@ const getEpic = action$ => action$.ofType(ActionTypes.GET).switchMap(action => {
     }
   }))
   .catch(error => Observable.of({
-    type: notify.ActionTypes.OPEN,
+    type: notify.ActionTypes.ERROR_OPEN,
     error: error.xhr.response ? error.xhr.response.error : {message: 'error network connection'}
   }))
 });
 
 const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => ({
-  type: notify.ActionTypes.OPEN,
+  type: notify.ActionTypes.ERROR_OPEN,
   error: action.error
 }));
 

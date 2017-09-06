@@ -10,6 +10,7 @@ import QuestionList from './QuestionList';
 import Settings from './Settings';
 import CreateQuestion from './CreateQuestion';
 import ErrorNotify from '../../../shared/components/ErrorNotify';
+import Notify from '../../../shared/components/Notify';
 
 export default function () {
   if (!this.props.token) return <Redirect to="/signin" />;
@@ -74,6 +75,7 @@ export default function () {
         </Switch>}
       </div>
       <ErrorNotify />
+      <Notify />
     </div>
   );
 

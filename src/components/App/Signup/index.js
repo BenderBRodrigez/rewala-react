@@ -8,8 +8,6 @@ import template from './signup.jsx';
 const mapStateToProps = state => ({
   pending: state.auth.pending,
   token: state.auth.token,
-  snackbarOpen: state.notify.open,
-  message: state.notify.message
 });
 
 class Signup extends Component {

@@ -39,6 +39,10 @@ const signupEpic = action$ => action$.ofType(ActionTypes.SIGNUP_REQUEST).switchM
   }))
 });
 
+const signoutEpic = action$ => action$.ofType(ActionTypes.SIGNOUT).do(action => {
+  netService.setSocketClose();
+}).ignoreElements();
+
 const getUserEpic = action$ => action$.ofType(ActionTypes.GET_USER).map(action => {
   return netService.ajaxGet({
     url: `/clients/${action.payload.response.id}/groups`,
@@ -47,17 +51,21 @@ const getUserEpic = action$ => action$.ofType(ActionTypes.GET_USER).map(action =
 });
 
 const failEpic = action$ => action$.ofType(ActionTypes.REQUEST_FAILED).map(action => ({
-  type: notify.ActionTypes.OPEN,
+  type: notify.ActionTypes.ERROR_OPEN,
   error: action.error
 }));
 
 const redirectEpic = action$ => action$.ofType(ActionTypes.SIGNIN).do(action => {
+  netService.subscribeTo('create');
+  netService.subscribeTo('delete');
+  netService.subscribeTo('deadline');
   store.dispatch(routerActions.push('/home'));
 }).ignoreElements();
 
 export const authEpics = [
   signinEpic,
   signupEpic,
+  signoutEpic,
   redirectEpic,
   getUserEpic,
   failEpic,
